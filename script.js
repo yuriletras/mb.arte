@@ -1,35 +1,139 @@
-// script.js
-
-// Dados de exemplo de produtos
+// Dados de exemplo de produtos com opções de tamanho
 const products = [
     {
         id: 1,
-        name: "Ilustração em madeira pinus a partir da foto + frase + folhagens.",
-        price: 90.00,
+        name: "Ilustração em madeira pinus",
         image: "images/produtos/ilustracaoemmadeira1.png",
-        description: "Esta ilustração é uma peça única e personalizada, feita com a sua foto favorita. Criada em madeira pinus de alta qualidade, a obra é complementada com uma frase especial e folhagens delicadas, tornando-a uma lembrança perfeita ou um presente inesquecível."
+        description: "Esta ilustração é uma peça única e personalizada, feita com a sua foto favorita. Criada em madeira pinus de alta qualidade, a obra é complementada com uma frase especial e folhagens delicadas, tornando-a uma lembrança perfeita ou um presente inesquecível.",
+        options: [
+            { name: "20x20cm", price: 90.00 },
+            { name: "25x25cm", price: 110.00 },
+            { name: "30x30cm", price: 130.00 }
+        ]
     },
     {
         id: 2,
-        name: "Produto B",
-        price: 99.90,
-        image: "https://via.placeholder.com/250x250.png?text=Produto+B",
-        description: "Detalhes completos do Produto B. Uma peça artesanal que combina estilo e funcionalidade para qualquer ambiente."
+        name: "Acrílico (redondo)",
+        image: "images/produtos/acrilico1.png",
+        description: "Placa de acrílico redonda, ideal para decorar qualquer ambiente com elegância. Acompanha base para ser utilizada em prateleiras, escrivaninhas, etc...",
+        options: [
+            { name: "15cm", price: 60.00 },
+            { name: "20cm", price: 80.00 },
+            { name: "25cm", price: 100.00 }
+        ]
     },
     {
         id: 3,
-        name: "Produto C",
-        price: 129.90,
-        image: "https://via.placeholder.com/250x250.png?text=Produto+C",
-        description: "Uma peça elegante e charmosa, perfeita para decorar a sua casa ou presentear alguém especial. Feita com materiais sustentáveis, garantindo beleza e durabilidade."
+        name: "Flâmula em algodão cru",
+        image: "images/produtos/flamula1.png",
+        description: "Flâmulas em tecido algodão cru personalizada com frases, nomes, elementos, desenhos...Para tamanhos diferenciados verificar orçamento. Acompanha madeira e cordão para pendurar.",
+        options: [
+            { name: "24x26cm", price: 40.00 },
+            { name: "28x30cm", price: 55.00 }
+        ]
     },
     {
         id: 4,
-        name: "Produto D",
+        name: "Placa em MDF",
         price: 59.90,
         image: "https://via.placeholder.com/250x250.png?text=Produto+D",
-        description: "Um item versátil e cheio de personalidade. Seu design moderno se adapta a qualquer estilo, trazendo um toque de arte e sofisticação."
-    }
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 5,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 6,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },{
+        id: 7,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },{
+        id: 8,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 9,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 10,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 11,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 12,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 13,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 14,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 15,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },{
+        id: 16,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 17,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
+    {
+        id: 18,
+        name: "Placa em MDF",
+        price: 59.90,
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10."
+    },
 ];
 
 let cart = [];
@@ -59,25 +163,60 @@ const detailsAddToCartBtn = document.getElementById('details-add-to-cart-btn');
 const lightboxImage = document.getElementById('lightbox-image');
 const closeDetailsBtn = productDetailsModal.querySelector('.close-btn');
 const closeLightboxBtn = imageLightboxModal.querySelector('.close-btn');
+const detailsOptionsSelect = document.getElementById('details-options-select'); // Novo seletor
+
+// Elementos para os novos modais
+const aboutMeModal = document.getElementById('about-me-modal');
+const scheduleModal = document.getElementById('schedule-modal');
+const aboutMeBtn = document.getElementById('about-me-btn');
+const scheduleBtn = document.getElementById('schedule-btn');
+const closeAboutMeBtn = aboutMeModal.querySelector('.close-btn');
+const closeScheduleBtn = scheduleModal.querySelector('.close-btn');
 
 // Elemento para o link "Produtos" no menu mobile
 const productsLink = document.querySelector('.mobile-nav .nav-products-link');
 
 // Funções para renderizar e atualizar a interface
 function renderProducts() {
-    productTimelineContainer.innerHTML = products.map(product => `
-        <div class="product-card-timeline">
-            <img src="${product.image}" alt="${product.name}" class="product-image-thumbnail" data-id="${product.id}">
-            <h3>${product.name}</h3>
-            <div class="product-details-actions">
-                <p class="price">R$ ${product.price.toFixed(2)}</p>
-                <div class="product-actions">
-                    <button class="add-to-cart-btn" data-id="${product.id}">Adicionar</button>
-                    <button class="details-btn" data-id="${product.id}">Detalhes</button>
+    productTimelineContainer.innerHTML = products.map(product => {
+        // Verifica se o produto tem opções
+        const hasOptions = product.options && product.options.length > 0;
+        let priceHtml;
+        let priceValue;
+
+        if (hasOptions) {
+            priceValue = product.options[0].price; // Preço inicial
+            priceHtml = `
+                <select class="product-options-select" data-id="${product.id}">
+                    ${product.options.map((option, index) => `
+                        <option value="${index}">${option.name} - R$ ${option.price.toFixed(2)}</option>
+                    `).join('')}
+                </select>
+            `;
+        } else {
+            priceValue = product.price;
+            priceHtml = `<p class="price">R$ ${priceValue.toFixed(2)}</p>`;
+        }
+
+        return `
+            <div class="product-card-timeline">
+                <img src="${product.image}" alt="${product.name}" class="product-image-thumbnail" data-id="${product.id}">
+                <h3>${product.name}</h3>
+                <div class="product-details-actions">
+                    <p class="price" data-initial-price="${priceValue.toFixed(2)}">${priceHtml}</p>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" data-id="${product.id}">Adicionar</button>
+                        <button class="details-btn" data-id="${product.id}">Detalhes</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
+
+    // Chama a função de animação após a renderização
+    if (typeof initializeProductAnimations !== 'undefined') {
+        initializeProductAnimations();
+    }
 }
 
 function renderCartItems() {
@@ -95,15 +234,16 @@ function renderCartItems() {
             </div>
             <div class="cart-item-actions">
                 <div class="quantity-control">
-                    <button class="decrease-qty-btn" data-id="${item.id}">-</button>
+                    <button class="decrease-qty-btn" data-id="${item.id}" data-option-name="${item.optionName}">-</button>
                     <input type="number" value="${item.quantity}" min="1" readonly>
-                    <button class="increase-qty-btn" data-id="${item.id}">+</button>
+                    <button class="increase-qty-btn" data-id="${item.id}" data-option-name="${item.optionName}">+</button>
                 </div>
-                <button class="remove-item-btn" data-id="${item.id}">Remover</button>
+                <button class="remove-item-btn" data-id="${item.id}" data-option-name="${item.optionName}">Remover</button>
             </div>
         </div>
     `).join('');
 }
+
 
 function updateCartInfo() {
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -114,28 +254,52 @@ function updateCartInfo() {
 }
 
 // Funções de manipulação do carrinho
-function addToCart(productId) {
+function addToCart(productId, optionIndex = null) {
     const product = products.find(p => p.id === productId);
-    const cartItem = cart.find(item => item.id === productId);
+    if (!product) return;
+
+    let itemToAdd;
+    if (optionIndex !== null && product.options) {
+        const option = product.options[optionIndex];
+        itemToAdd = {
+            id: product.id,
+            name: `${product.name} - ${option.name}`,
+            price: option.price,
+            image: product.image,
+            quantity: 1,
+            optionName: option.name // Para identificar a opção no carrinho
+        };
+    } else {
+        itemToAdd = {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+        };
+    }
+
+    // Procura o item no carrinho
+    const cartItem = cart.find(item => item.id === itemToAdd.id && item.optionName === itemToAdd.optionName);
 
     if (cartItem) {
         cartItem.quantity++;
     } else {
-        cart.push({ ...product, quantity: 1 });
+        cart.push(itemToAdd);
     }
 
     renderCartItems();
     updateCartInfo();
 }
 
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
+function removeFromCart(productId, optionName) {
+    cart = cart.filter(item => !(item.id === productId && item.optionName === optionName));
     renderCartItems();
     updateCartInfo();
 }
 
-function updateQuantity(productId, type) {
-    const cartItem = cart.find(item => item.id === productId);
+function updateQuantity(productId, type, optionName) {
+    const cartItem = cart.find(item => item.id === productId && item.optionName === optionName);
     if (!cartItem) return;
 
     if (type === 'increase') {
@@ -143,7 +307,7 @@ function updateQuantity(productId, type) {
     } else if (type === 'decrease' && cartItem.quantity > 1) {
         cartItem.quantity--;
     } else if (type === 'decrease' && cartItem.quantity === 1) {
-        removeFromCart(productId);
+        removeFromCart(productId, optionName);
         return;
     }
 
@@ -160,7 +324,18 @@ function openProductDetails(productId) {
     detailsImage.alt = product.name;
     detailsName.textContent = product.name;
     detailsDescription.textContent = product.description;
-    detailsPrice.textContent = `R$ ${product.price.toFixed(2)}`;
+    
+    // Renderiza as opções no modal
+    if (product.options) {
+        detailsOptionsSelect.innerHTML = product.options.map((option, index) => `
+            <option value="${index}">${option.name}</option>
+        `).join('');
+        detailsPrice.textContent = `R$ ${product.options[0].price.toFixed(2)}`;
+        detailsOptionsSelect.style.display = 'block';
+    } else {
+        detailsPrice.textContent = `R$ ${product.price.toFixed(2)}`;
+        detailsOptionsSelect.style.display = 'none';
+    }
     detailsAddToCartBtn.dataset.id = product.id;
 
     productDetailsModal.style.display = 'flex';
@@ -169,6 +344,20 @@ function openProductDetails(productId) {
 function openLightbox(imageSrc) {
     lightboxImage.src = imageSrc;
     imageLightboxModal.style.display = 'flex';
+}
+
+function openModal(modal) {
+    closeAllModals();
+    modal.style.display = 'flex';
+}
+
+function closeModal(modal) {
+    modal.style.display = 'none';
+}
+
+function closeAllModals() {
+    const modals = [cartModal, searchModal, productDetailsModal, imageLightboxModal, aboutMeModal, scheduleModal];
+    modals.forEach(modal => modal.style.display = 'none');
 }
 
 // --- Event Listeners ---
@@ -193,7 +382,10 @@ productTimelineContainer.addEventListener('click', (e) => {
     const target = e.target;
     if (target.classList.contains('add-to-cart-btn')) {
         const productId = parseInt(target.dataset.id);
-        addToCart(productId);
+        const productCard = target.closest('.product-card-timeline');
+        const selectElement = productCard.querySelector('.product-options-select');
+        const optionIndex = selectElement ? parseInt(selectElement.value) : null;
+        addToCart(productId, optionIndex);
     } else if (target.classList.contains('details-btn')) {
         const productId = parseInt(target.dataset.id);
         openProductDetails(productId);
@@ -203,18 +395,33 @@ productTimelineContainer.addEventListener('click', (e) => {
     }
 });
 
+// Atualiza o preço exibido quando a opção é alterada
+productTimelineContainer.addEventListener('change', (e) => {
+    const target = e.target;
+    if (target.classList.contains('product-options-select')) {
+        const productId = parseInt(target.dataset.id);
+        const product = products.find(p => p.id === productId);
+        const selectedOption = product.options[parseInt(target.value)];
+        const priceElement = target.closest('.product-details-actions').querySelector('.price');
+        priceElement.textContent = `R$ ${selectedOption.price.toFixed(2)}`;
+    }
+});
+
 // Gerencia cliques no carrinho (aumento, diminuição, remoção)
 cartItemsContainer.addEventListener('click', (e) => {
     const target = e.target;
     if (target.classList.contains('remove-item-btn')) {
         const productId = parseInt(target.dataset.id);
-        removeFromCart(productId);
+        const optionName = target.dataset.optionName;
+        removeFromCart(productId, optionName);
     } else if (target.classList.contains('increase-qty-btn')) {
         const productId = parseInt(target.dataset.id);
-        updateQuantity(productId, 'increase');
+        const optionName = target.dataset.optionName;
+        updateQuantity(productId, 'increase', optionName);
     } else if (target.classList.contains('decrease-qty-btn')) {
         const productId = parseInt(target.dataset.id);
-        updateQuantity(productId, 'decrease');
+        const optionName = target.dataset.optionName;
+        updateQuantity(productId, 'decrease', optionName);
     }
 });
 
@@ -222,37 +429,66 @@ cartItemsContainer.addEventListener('click', (e) => {
 openCartBtn.addEventListener('click', (e) => {
     e.preventDefault();
     renderCartItems();
-    cartModal.style.display = 'flex';
+    openModal(cartModal);
 });
 
 closeCartBtn.addEventListener('click', () => {
-    cartModal.style.display = 'none';
+    closeModal(cartModal);
 });
 
 searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    searchModal.style.display = 'flex';
+    openModal(searchModal);
 });
 
 closeSearchBtn.addEventListener('click', () => {
-    searchModal.style.display = 'none';
+    closeModal(searchModal);
 });
 
 // Fecha modais de detalhes e lightbox
 closeDetailsBtn.addEventListener('click', () => {
-    productDetailsModal.style.display = 'none';
+    closeModal(productDetailsModal);
 });
 
 closeLightboxBtn.addEventListener('click', () => {
-    imageLightboxModal.style.display = 'none';
+    closeModal(imageLightboxModal);
 });
+
+// Novos Event Listeners para os botões da seção hero e seus respectivos modais
+aboutMeBtn.addEventListener('click', () => {
+    openModal(aboutMeModal);
+});
+
+closeAboutMeBtn.addEventListener('click', () => {
+    closeModal(aboutMeModal);
+});
+
+scheduleBtn.addEventListener('click', () => {
+    openModal(scheduleModal);
+});
+
+closeScheduleBtn.addEventListener('click', () => {
+    closeModal(scheduleModal);
+});
+
 
 // Adiciona ao carrinho a partir do modal de detalhes
 detailsAddToCartBtn.addEventListener('click', (e) => {
     const productId = parseInt(e.target.dataset.id);
-    addToCart(productId);
-    productDetailsModal.style.display = 'none';
+    const selectedIndex = detailsOptionsSelect.value ? parseInt(detailsOptionsSelect.value) : null;
+    addToCart(productId, selectedIndex);
+    closeModal(productDetailsModal);
 });
+
+// Atualiza o preço no modal de detalhes quando a opção é alterada
+if (detailsOptionsSelect) {
+    detailsOptionsSelect.addEventListener('change', (e) => {
+        const productId = parseInt(detailsAddToCartBtn.dataset.id);
+        const product = products.find(p => p.id === productId);
+        const selectedOption = product.options[parseInt(e.target.value)];
+        detailsPrice.textContent = `R$ ${selectedOption.price.toFixed(2)}`;
+    });
+}
 
 
 // Lógica para o menu mobile (refatorada)

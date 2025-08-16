@@ -1,0 +1,31 @@
+/*
+    transitions.css
+    Configura apenas as animações de entrada e saída, sem afetar o layout.
+*/
+
+/* Estilo inicial dos elementos antes de serem animados */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Estilo final (ativado via JavaScript) */
+.fade-in-up.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Para efeitos de entrada escalonada (ex: cards de produtos) */
+/* CORRIGIDO: O nome da classe deve corresponder ao do seu HTML (.product-card-timeline) */
+.product-card-timeline {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* CORRIGIDO: Quando a classe 'animated' é adicionada, a animação acontece */
+.product-card-timeline.animated {
+    opacity: 1;
+    transform: translateY(0);
+}

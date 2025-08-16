@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Loja de Inspiração</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="transitions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body>
-
-    <header class="main-header">
+<body> <header class="main-header">
         <div class="header-container">
             <button id="hamburger-menu-btn" class="hamburger-menu-btn">
                 <i data-feather="menu"></i>
@@ -62,39 +64,27 @@
         <section id="hero" class="hero-section">
             <div class="container">
                 <div class="hero-content">
-                    <img src="images/mb.png" alt="Descrição da Marca" class="hero-image">
-                    <h1>Sua história, nossa inspiração.</h1>
-                    <p>Peças únicas e artesanais que transformam momentos em memórias eternas.</p>
+                    <img src="images/mb.png" alt="Descrição da Marca" class="hero-image fade-in-up" data-animate>
+                    <h1 class="fade-in-up" data-animate>Sua história, nossa inspiração.</h1>
+                    <p class="fade-in-up" data-animate>Peças únicas e artesanais que transformam momentos em memórias eternas.</p>
+                    <div class="hero-buttons fade-in-up" data-animate>
+                        <button id="about-me-btn" class="hero-btn">Sobre Mim</button>
+                        <button id="schedule-btn" class="hero-btn">Planeje sua Criação</button>
+                    </div>
                 </div>
             </div>
         </section>
         
-        <section id="about" class="about-section">
-            <div class="container">
-                <div class="about-content">
-                    <div class="about-image">
-                        <img src="images/frase.png" alt="Frase de inspiração">
-                    </div>
-                    
-                    <div class="about-image">
-                        <div class="rounded-image-box">
-                            <img src="images/logo1.PNG" alt="Foto sobre a empresa">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <div class="products-background-wrapper">
             <div class="container product-timeline-container">
-                <h2 class="section-title">Nossa Trilha de Produtos</h2>
+                <h2 class="section-title fade-in-up" data-animate>Nossa Trilha de Produtos</h2>
                 <div class="product-timeline">
-                </div>
+                    </div>
             </div>
         </div>
 
         <section class="newsletter-section">
-            <div class="newsletter-box">
+            <div class="newsletter-box fade-in-up" data-animate>
                 <div class="container"> 
                     <h3>NEWSLETTER</h3>
                     <h2>Receba todas as promoções</h2>
@@ -110,7 +100,7 @@
 
     <footer class="main-footer">
         <div class="container footer-top">
-            <div class="footer-section">
+            <div class="footer-section fade-in-up" data-animate>
                 <div class="social-icons-footer">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-pinterest"></i></a>
@@ -118,7 +108,7 @@
                 </div>
             </div>
 
-            <div class="footer-section">
+            <div class="footer-section fade-in-up" data-animate>
                 <h3>Entre em contato</h3>
                 <div class="contact-info">
                     <p>(85) 90000-0333</p>
@@ -128,7 +118,7 @@
                 </div>
             </div>
 
-            <div class="footer-section">
+            <div class="footer-section fade-in-up" data-animate>
                 <h3>Assine nossa newsletter</h3>
                 <form class="newsletter-form-section">
                     <input type="email" placeholder="E-mail">
@@ -140,8 +130,8 @@
         <div class="container footer-bottom">
             <p>&copy; Copyright Monique Barbosa Arte - 43794266000107 - 2025. Todos os direitos reservados.</p>
             <div class="developer-info">
-                <p>criado com</p>
-                <img src="https://via.placeholder.com/100x20.png?text=nawamshop" alt="Logo do criador">
+                <p>criado por</p>
+                <img src="images/ybarbosa.png" alt="Logo do criador">
             </div>
         </div>
 
@@ -190,6 +180,7 @@
                 <img id="details-image" src="" alt="Imagem do Produto">
                 <div class="product-details-text">
                     <h2 id="details-name"></h2>
+                    <select id="details-options-select" style="display: none; margin-bottom: 10px;"></select>
                     <p id="details-description"></p>
                     <p id="details-price" class="price"></p>
                     <button class="add-to-cart-btn" id="details-add-to-cart-btn" data-id="">Adicionar ao Carrinho</button>
@@ -202,9 +193,61 @@
         <span class="close-btn">&times;</span>
         <img class="modal-image" id="lightbox-image" src="" alt="Imagem Ampliada">
     </div>
+
+    <div id="about-me-modal" class="modal">
+        <div class="modal-content about-me-content">
+            <span class="close-btn">&times;</span>
+            <div class="about-me-inner-content">
+                <img src="images/logo1.PNG" alt="Foto da Monique Barbosa Arte" class="modal-bio-image">
+                <div class="about-me-text">
+                    <h2>Arte para Transformar Emoções</h2>
+                    <p>Olá! Sou Monique Barbosa, a mente e o coração por trás de cada peça artesanal que você encontra aqui. Movida pela paixão em criar e eternizar histórias, dedico-me a transformar momentos em arte. Cada produto é único, feito à mão, carregado de significado e personalizado para refletir a sua essência. Acredito no poder da arte para conectar pessoas e emoções, e é isso que busco em cada criação: uma obra que inspira e transforma. </p>
+                    <p>Vamos juntos criar algo inesquecível?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="schedule-modal" class="modal">
+        <div class="modal-content schedule-content">
+            <span class="close-btn">&times;</span>
+            <div class="schedule-inner-content">
+                <h2>Planeje sua Criação</h2>
+                <p class="intro-text">Para garantir que seu produto personalizado seja perfeito, siga o nosso processo de agendamento e personalização. É rápido, fácil e garante que sua peça seja entregue no momento certo.</p>
+                
+                <h3 class="schedule-heading">Como Funciona a Encomenda</h3>
+                <ol>
+                    <li>Escolha os produtos personalizados que deseja.</li>
+                    <li>Adicione-os ao carrinho e clique em "Iniciar Compra".</li>
+                    <li>Siga os passos do checkout para preencher seus dados, endereço e escolher o frete.</li>
+                    <li>Escolha a forma de pagamento e finalize o pedido.</li>
+                </ol>
+
+                <h3 class="schedule-heading">Agendamento e Envio</h3>
+                <p>Após a confirmação da compra pelo site, o próximo passo é agendar o envio da sua encomenda. Isso é feito de forma simples e direta pelo nosso WhatsApp.</p>
+                
+                <div class="schedule-callout">
+                    <h4>Datas Disponíveis para Agendamento:</h4>
+                    <ul>
+                        <li>SETEMBRO: 06, 08, 13, 15, 20, 22, 27</li>
+                        <li>OUTUBRO: [atualize as datas aqui]</li>
+                    </ul>
+                </div>
+                
+                <a href="https://api.whatsapp.com/send?phone=5555984900333" target="_blank" class="whatsapp-schedule-btn">
+                    <i class="fab fa-whatsapp"></i> Agendar pelo WhatsApp
+                </a>
+
+                <h3 class="schedule-heading">Sobre a Personalização</h3>
+                <p>Após agendar seu envio, entraremos em contato para coletar todas as informações de personalização do seu produto. Vamos discutir cores, artes, frases e todos os detalhes para que a peça fique exatamente como você imaginou. Também forneceremos atualizações sobre o prazo de produção e entrega.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         feather.replace();
     </script>
     <script src="script.js"></script>
+    <script src="transitions.js"></script>
 </body>
 </html>
