@@ -4,27 +4,31 @@
 const products = [
     {
         id: 1,
-        name: "Produto A",
-        price: 79.90,
-        image: "https://via.placeholder.com/250x250.png?text=Produto+A"
+        name: "Ilustração em madeira pinus a partir da foto + frase + folhagens.",
+        price: 90.00,
+        image: "images/produtos/ilustracaoemmadeira1.png",
+        description: "Esta ilustração é uma peça única e personalizada, feita com a sua foto favorita. Criada em madeira pinus de alta qualidade, a obra é complementada com uma frase especial e folhagens delicadas, tornando-a uma lembrança perfeita ou um presente inesquecível."
     },
     {
         id: 2,
         name: "Produto B",
         price: 99.90,
-        image: "https://via.placeholder.com/250x250.png?text=Produto+B"
+        image: "https://via.placeholder.com/250x250.png?text=Produto+B",
+        description: "Detalhes completos do Produto B. Uma peça artesanal que combina estilo e funcionalidade para qualquer ambiente."
     },
     {
         id: 3,
         name: "Produto C",
         price: 129.90,
-        image: "https://via.placeholder.com/250x250.png?text=Produto+C"
+        image: "https://via.placeholder.com/250x250.png?text=Produto+C",
+        description: "Uma peça elegante e charmosa, perfeita para decorar a sua casa ou presentear alguém especial. Feita com materiais sustentáveis, garantindo beleza e durabilidade."
     },
     {
         id: 4,
         name: "Produto D",
         price: 59.90,
-        image: "https://via.placeholder.com/250x250.png?text=Produto+D"
+        image: "https://via.placeholder.com/250x250.png?text=Produto+D",
+        description: "Um item versátil e cheio de personalidade. Seu design moderno se adapta a qualquer estilo, trazendo um toque de arte e sofisticação."
     }
 ];
 
@@ -44,20 +48,34 @@ const cartTotalSpan = document.getElementById('cart-total');
 const hamburgerMenuBtn = document.getElementById('hamburger-menu-btn');
 const mobileNav = document.getElementById('mobile-nav');
 
-// Novo elemento para o submenu
-const productsLink = document.querySelector('.mobile-nav .nav-products-link');
+// NOVOS Elementos para modais e detalhes
+const productDetailsModal = document.getElementById('product-details-modal');
+const imageLightboxModal = document.getElementById('image-lightbox-modal');
+const detailsImage = document.getElementById('details-image');
+const detailsName = document.getElementById('details-name');
+const detailsDescription = document.getElementById('details-description');
+const detailsPrice = document.getElementById('details-price');
+const detailsAddToCartBtn = document.getElementById('details-add-to-cart-btn');
+const lightboxImage = document.getElementById('lightbox-image');
+const closeDetailsBtn = productDetailsModal.querySelector('.close-btn');
+const closeLightboxBtn = imageLightboxModal.querySelector('.close-btn');
 
-// NOVO: Elementos para o menu desktop
-const desktopMenu = document.querySelector('.desktop-menu');
+// Elemento para o link "Produtos" no menu mobile
+const productsLink = document.querySelector('.mobile-nav .nav-products-link');
 
 // Funções para renderizar e atualizar a interface
 function renderProducts() {
     productTimelineContainer.innerHTML = products.map(product => `
         <div class="product-card-timeline">
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${product.image}" alt="${product.name}" class="product-image-thumbnail" data-id="${product.id}">
             <h3>${product.name}</h3>
-            <p class="price">R$ ${product.price.toFixed(2)}</p>
-            <button class="add-to-cart-btn" data-id="${product.id}">Adicionar ao Carrinho</button>
+            <div class="product-details-actions">
+                <p class="price">R$ ${product.price.toFixed(2)}</p>
+                <div class="product-actions">
+                    <button class="add-to-cart-btn" data-id="${product.id}">Adicionar</button>
+                    <button class="details-btn" data-id="${product.id}">Detalhes</button>
+                </div>
+            </div>
         </div>
     `).join('');
 }
@@ -133,6 +151,26 @@ function updateQuantity(productId, type) {
     updateCartInfo();
 }
 
+// Funções para abrir os novos modais
+function openProductDetails(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    detailsImage.src = product.image;
+    detailsImage.alt = product.name;
+    detailsName.textContent = product.name;
+    detailsDescription.textContent = product.description;
+    detailsPrice.textContent = `R$ ${product.price.toFixed(2)}`;
+    detailsAddToCartBtn.dataset.id = product.id;
+
+    productDetailsModal.style.display = 'flex';
+}
+
+function openLightbox(imageSrc) {
+    lightboxImage.src = imageSrc;
+    imageLightboxModal.style.display = 'flex';
+}
+
 // --- Event Listeners ---
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
@@ -150,13 +188,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Gerencia cliques na seção de produtos
 productTimelineContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('add-to-cart-btn')) {
-        const productId = parseInt(e.target.dataset.id);
+    const target = e.target;
+    if (target.classList.contains('add-to-cart-btn')) {
+        const productId = parseInt(target.dataset.id);
         addToCart(productId);
+    } else if (target.classList.contains('details-btn')) {
+        const productId = parseInt(target.dataset.id);
+        openProductDetails(productId);
+    } else if (target.classList.contains('product-image-thumbnail')) {
+        const imageSrc = target.src;
+        openLightbox(imageSrc);
     }
 });
 
+// Gerencia cliques no carrinho (aumento, diminuição, remoção)
 cartItemsContainer.addEventListener('click', (e) => {
     const target = e.target;
     if (target.classList.contains('remove-item-btn')) {
@@ -191,43 +238,44 @@ closeSearchBtn.addEventListener('click', () => {
     searchModal.style.display = 'none';
 });
 
-// NOVO: Lógica para o menu desktop
-if (hamburgerMenuBtn && desktopMenu) {
-    hamburgerMenuBtn.addEventListener('click', function() {
-        desktopMenu.classList.toggle('menu-aberto');
-    });
+// Fecha modais de detalhes e lightbox
+closeDetailsBtn.addEventListener('click', () => {
+    productDetailsModal.style.display = 'none';
+});
 
-    // Opcional: Adicionar um evento para fechar o menu ao clicar fora dele
-    document.addEventListener('click', function(event) {
-        const isClickInsideMenu = desktopMenu.contains(event.target);
-        const isClickOnButton = hamburgerMenuBtn.contains(event.target);
+closeLightboxBtn.addEventListener('click', () => {
+    imageLightboxModal.style.display = 'none';
+});
 
-        if (!isClickInsideMenu && !isClickOnButton && desktopMenu.classList.contains('menu-aberto')) {
-            desktopMenu.classList.remove('menu-aberto');
-        }
-    });
-}
+// Adiciona ao carrinho a partir do modal de detalhes
+detailsAddToCartBtn.addEventListener('click', (e) => {
+    const productId = parseInt(e.target.dataset.id);
+    addToCart(productId);
+    productDetailsModal.style.display = 'none';
+});
 
-// Lógica para o menu mobile
-if (hamburgerMenuBtn && mobileNav) {
-    hamburgerMenuBtn.addEventListener('click', () => {
-        mobileNav.classList.toggle('open');
-    });
 
-    // Fechar menu ao clicar em um link ou fora
-    window.addEventListener('click', (e) => {
-        // Verifica se o clique foi fora do menu e do botão
-        const isClickInsideMobileNav = mobileNav.contains(e.target);
-        const isClickOnHamburger = hamburgerMenuBtn.contains(e.target);
+// Lógica para o menu mobile (refatorada)
+// Esta lógica agora funciona para mobile e desktop, como o botão de hambúrguer está sempre visível
+hamburgerMenuBtn.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+});
 
-        if (!isClickInsideMobileNav && !isClickOnHamburger && mobileNav.classList.contains('open')) {
-            mobileNav.classList.remove('open');
-        }
-    });
+// Fecha o menu lateral quando o usuário clica em qualquer lugar fora dele
+window.addEventListener('click', (e) => {
+    const isClickInsideMobileNav = mobileNav.contains(e.target);
+    const isClickOnHamburger = hamburgerMenuBtn.contains(e.target);
 
-    mobileNav.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A' && !e.target.classList.contains('nav-products-link')) {
-            mobileNav.classList.remove('open');
-        }
-    });
-}
+    // Se o menu estiver aberto e o clique não for dentro do menu ou no botão, feche-o
+    if (!isClickInsideMobileNav && !isClickOnHamburger && mobileNav.classList.contains('open')) {
+        mobileNav.classList.remove('open');
+    }
+});
+
+// Fecha o menu lateral ao clicar em um link
+mobileNav.addEventListener('click', (e) => {
+    // A condição !e.target.classList.contains('nav-products-link') evita que o submenu feche o menu principal
+    if (e.target.tagName === 'A' && !e.target.classList.contains('nav-products-link')) {
+        mobileNav.classList.remove('open');
+    }
+});
