@@ -114,6 +114,24 @@ body {
     right: -10px;
 }
 
+/* Estilização para o link 'Acessar Loja' */
+.access-store-link {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.access-store-link:hover {
+    color: var(--text-color-main);
+}
+
 /* --- Menu Lateral (Mobile) --- */
 .mobile-nav {
     position: fixed;
@@ -131,6 +149,8 @@ body {
 
 .mobile-nav.open {
     left: 0 !important;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 .mobile-nav ul {
@@ -217,69 +237,104 @@ body {
 /* --- Seção de Início (Hero) --- */
 .hero-section {
     background-color: var(--bg-color-accent);
-    background-image: none;
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--text-color-main);
-    position: relative;
-    padding: 60px 20px;
+    padding: 60px 0;
 }
 
-.hero-section::before {
-    content: none;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
+.hero-layout {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     text-align: center;
 }
 
-.hero-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+.hero-left {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
-.hero-content h1 {
+.hero-image-drop-container {
+    width: 150px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    /* Máscara em formato de gota */
+    mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250"><path d="M100,0 C200,50 200,150 100,250 C0,150 0,50 100,0 Z" fill="black"/></svg>');
+    mask-size: cover;
+    mask-position: center;
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250"><path d="M100,0 C200,50 200,150 100,250 C0,150 0,50 100,0 Z" fill="black"/></svg>');
+    -webkit-mask-size: cover;
+    -webkit-mask-position: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+    opacity: 0; /* Estado inicial para a transição */
+}
+
+.hero-image-drop-container.animated {
+    opacity: 1;
+}
+
+.hero-image-drop {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-image-drop-container:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.hero-right h1 {
     font-family: var(--font-family-stylish);
     font-size: 48px;
-    margin: 0;
+    margin-bottom: 15px;
     color: var(--text-color-main);
 }
 
-.hero-content p {
+.hero-right p {
     font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
     max-width: 500px;
-    margin: 0 auto 25px;
 }
 
 .hero-buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
     width: 100%;
     max-width: 350px;
-    margin-top: 20px;
+    gap: 10px;
 }
 
 .hero-btn {
     width: 100%;
-    padding: 10px 20px;
+    /* Diminuindo o padding e a fonte para diminuir o tamanho do botão */
+    padding: 8px 15px;
     background-color: var(--highlight-color);
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px; /* Diminuindo a fonte */
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -331,7 +386,7 @@ body {
 .product-card-timeline {
     width: 100%;
     max-width: 250px;
-    height: 400px;
+    height: auto;
     background-color: transparent;
     border-radius: 12px;
     box-shadow: none;
@@ -992,29 +1047,174 @@ body {
 
 /* --- MEDIA QUERIES para telas menores (Mobile) --- */
 @media (max-width: 767px) {
-    /* --- HERO SECTION MOBILE --- */
-    .hero-buttons {
-        flex-direction: row;
-        gap: 10px;
+    /* AJUSTES NO HEADER PARA MOBILE */
+    .header-container {
+        gap: 15px;
+    }
+
+    /* Mostrar o link "Acessar Loja" com texto e ícone no mobile */
+    .access-store-link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #fff;
+        font-size: 10px; /* Tamanho da fonte bem pequeno */
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    /* Ocultar o ícone da sacola duplicado para evitar confusão */
+    .cart-icon {
+        display: none;
+    }
+    
+    /* GOTA ANIMAÇÃO PARA MOBILE */
+    .hero-image-drop-container {
+        position: absolute;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .hero-image-drop-container.animated {
+        transform: none !important;
+    }
+    
+    .hero-image-drop-container:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Gota esquerda */
+    .hero-image-drop-container:first-child {
+        width: 150px;
+        height: 200px;
+        z-index: 2;
+        left: 50%;
+        transform: translate(calc(-100% - 10px), -50%) rotate(-10deg);
+    }
+    
+    /* Gota do meio */
+    .hero-image-drop-container.third-drop {
+        width: 100px;
+        height: 140px;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(5deg);
+    }
+    
+    /* Gota direita */
+    .hero-image-drop-container:last-child {
+        width: 120px;
+        height: 160px;
+        z-index: 1;
+        left: 50%;
+        transform: translate(10px, 10%) rotate(5deg);
+    }
+    
+    .hero-image-drop-container:first-child.animated {
+        animation: drop-down-left 1s forwards;
+    }
+    
+    .hero-image-drop-container.third-drop.animated {
+        animation: drop-down-center 1s 0.2s forwards;
+    }
+    
+    .hero-image-drop-container:last-child.animated {
+        animation: drop-down-right 1s 0.4s forwards;
+    }
+    
+    @keyframes drop-down-left {
+        0% { transform: translate(calc(-100% - 10px), -50%) rotate(-10deg); opacity: 0; }
+        100% { transform: translate(calc(-100% - 10px), -50%) rotate(-10deg); opacity: 1; }
+    }
+    
+    @keyframes drop-down-center {
+        0% { transform: translate(-50%, -50%) rotate(5deg); opacity: 0; }
+        100% { transform: translate(-50%, -50%) rotate(5deg); opacity: 1; }
+    }
+    
+    @keyframes drop-down-right {
+        0% { transform: translate(10px, 10%) rotate(5deg); opacity: 0; }
+        100% { transform: translate(10px, 10%) rotate(5deg); opacity: 1; }
+    }
+    
+    /* AJUSTES DA SEÇÃO HERO PARA MOBILE */
+    .hero-section {
+        /* Distância das fotos para o menu superior */
+        padding-top: 40px;
+        margin-top: 0;
+    }
+    
+    .hero-layout {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .hero-left,
+    .hero-right {
         width: 100%;
-        max-width: 350px;
+    }
+    
+    .hero-left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 250px;
+        position: relative;
+    }
+    
+    .hero-right {
+        align-items: center;
         margin-top: 20px;
     }
-
+    
+    .hero-logo {
+        width: 280px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    
+    .hero-right h1 {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+    
+    .hero-right p {
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        width: 100%;
+        gap: 10px;
+        justify-content: center;
+        align-items: stretch;
+    }
+    
     .hero-btn {
         flex: 1;
-        font-size: 12px;
-        padding: 8px 12px;
-        letter-spacing: 0.5px;
+        max-width: 50%;
+        /* Ajustes para mobile */
+        padding: 6px 8px;
+        font-size: 10px;
+        white-space: normal;
+        text-overflow: clip;
+        overflow: visible;
     }
-
+    
     /* --- PRODUCT SECTION MOBILE --- */
     .product-timeline {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
-
+    
     .product-card-timeline {
         width: auto;
         max-width: none;
@@ -1024,7 +1224,7 @@ body {
         flex-direction: column;
         justify-content: space-between;
     }
-
+    
     .product-card-timeline img {
         width: 100%;
         height: 120px;
@@ -1034,17 +1234,17 @@ body {
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
-
+    
     .product-card-timeline h3 {
         font-size: 11px;
         margin: 5px 0 2px;
     }
-
+    
     .product-card-timeline .price {
         font-size: 10px;
         margin: 0 0 5px;
     }
-
+    
     .product-details-actions {
         display: flex;
         flex-direction: column;
@@ -1053,13 +1253,13 @@ body {
         width: 100%;
         margin-top: auto;
     }
-
+    
     .product-options-select {
         padding: 4px 10px;
         font-size: 9px;
         margin-bottom: 0;
     }
-
+    
     .product-actions {
         display: flex;
         flex-direction: row;
@@ -1082,57 +1282,155 @@ body {
     .header-container {
         gap: 40px;
     }
-
+    
     .logo {
         flex-grow: 0;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
     }
-
+    
     .logo-img {
         height: 50px;
     }
-
-    /* Alterações apenas na seção de início */
-    .hero-content h1 {
-        font-size: 60px;
+    
+    /* Exibir o link "Acessar Loja" no desktop (como já estava) */
+    .access-store-link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    /* Ocultar o ícone da sacola duplicado para evitar confusão */
+    .cart-icon {
+        display: none;
     }
 
-    .hero-content p {
-        font-size: 20px;
-        max-width: 700px;
+    /* CORREÇÃO DAS ANIMAÇÕES DE GOTA PARA DESKTOP */
+    .hero-layout {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .hero-left {
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+        position: relative;
+        height: 400px;
+        justify-content: center;
+    }
+
+    .hero-image-drop-container {
+        width: 250px;
+        height: 350px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        position: absolute;
+        overflow: visible;
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        opacity: 0; /* Começa com opacidade 0 */
+    }
+    
+    .hero-image-drop-container.animated {
+        opacity: 1;
+    }
+
+    .hero-image-drop-container:first-child {
+        top: 0;
+        left: 0;
+        transform: rotate(-15deg) translateY(-50px); /* Estado inicial */
+        z-index: 2;
+    }
+    
+    .hero-image-drop-container:first-child.animated {
+        transform: rotate(-15deg) translateY(0); /* Estado final */
+    }
+    
+    /* Gota do meio (nova) */
+    .hero-image-drop-container.third-drop {
+        width: 180px; /* Tamanho menor */
+        height: 250px; /* Tamanho menor */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(5deg) translateY(-50px); /* Estado inicial */
+        z-index: 3;
+    }
+    
+    .hero-image-drop-container.third-drop.animated {
+        transform: translate(-50%, -50%) rotate(5deg) translateY(0); /* Estado final */
+    }
+
+    .hero-image-drop-container:last-child {
+        bottom: 0;
+        right: 0;
+        transform: rotate(5deg) translateY(-50px); /* Estado inicial */
+        z-index: 1;
+        width: 200px;
+        height: 280px;
+    }
+    
+    .hero-image-drop-container:last-child.animated {
+        transform: rotate(5deg) translateY(0); /* Estado final */
+    }
+
+    .hero-image-drop-container:hover {
+        transform: scale(1.05) rotate(2deg);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hero-right {
+        width: 55%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 400px;
+        text-align: center;
+        margin-top: 50px;
+    }
+    
+    .hero-logo {
+        width: 750px;
+        height: auto;
+        /* Distância da logo para o texto */
+        margin-bottom: 5px;
+    }
+    
+    .hero-right h1 {
+        font-size: 50px;
+        margin-bottom: 15px;
+    }
+    
+    .hero-right p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        max-width: 500px;
     }
     
     .hero-buttons {
+        display: flex;
         flex-direction: row;
-        gap: 15px;
         width: auto;
-    }
-
-    .hero-btn {
-        padding: 12px 25px;
-        font-size: 15px;
-    }
-
-    .about-me-inner-content {
-        flex-direction: row;
-        text-align: left;
+        gap: 15px;
+        justify-content: center;
     }
     
-    .modal-bio-image {
-        width: 180px;
-        height: 180px;
-    }
-
-    .about-me-text {
+    .hero-btn {
+        width: auto;
         flex: 1;
+        /* Ajustes para desktop */
+        padding: 8px 15px;
+        font-size: 12px;
     }
     
     .products-background-wrapper {
         background-image: linear-gradient(to right, var(--bg-color-accent) 50%, var(--bg-color-main) 50%);
     }
-
+    
     .product-timeline {
         align-items: center;
         gap: 20px;
@@ -1141,7 +1439,7 @@ body {
     .product-card-timeline {
         width: 100%;
         max-width: 300px;
-        height: 400px;
+        height: auto;
         padding: 20px;
         margin: 0;
     }
