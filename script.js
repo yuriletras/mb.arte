@@ -21,10 +21,10 @@ const products = [
         description: "Flâmulas em tecido algodão cru personalizada com frases, nomes, elementos, desenhos...Para tamanhos diferenciados verificar orçamento. Acompanha madeira e cordão para pendurar.",
         price: 40.00
     },
-    { id: 4, name: "Placa em MDF", price: 59.90, image: "https://via.placeholder.com/250x250.png?text=Placa+MDF+4", description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento Obs.: Para incluir pintura acréscimo de R$10." },
-    { id: 5, name: "Placa em MDF", price: 59.90, image: "https://via.placeholder.com/250x250.png?text=Placa+MDF+5", description: "Placa em MDF..." },
-    { id: 6, name: "Placa em MDF", price: 59.90, image: "https://via.placeholder.com/250x250.png?text=Placa+MDF+6", description: "Placa em MDF..." },
-    { id: 7, name: "Placa em MDF", price: 59.90, image: "https://via.placeholder.com/250x250.png?text=Placa+MDF+7", description: "Placa em MDF..." },
+    { id: 4, name: "Placa em MDF", price: 40.00, image: "images/produtos/placa1.png", description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate). Para outros tamanhos consultar orçamento. Obs.: Para incluir pintura acréscimo de R$10." },
+    { id: 5, name: "Placa para recepção", price: 110.00, image: "images/produtos/placamaior1.png", description: "Acrílico: Transparente ou pintado - Cor do fundo a escolha do cliente. Letra preta, branca ou dourada. MDF: Pintada - Cor do fundo a escolha do cliente. Efeito madeira - Disponíveis as cores castanho e chocolate." },
+    { id: 6, name: "Porta alianças", price: 50.00, image: "images/produtos/porta1.png", description: "Personalizada com nomes, frases e elementos (símbolos, flores, etc)" },
+    { id: 7, name: "Chaveiro", price: 7.00, image: "images/produtos/chaveiro1.png", description: "ersonalizado com nomes eelementos , frases e etc. Argola na cor prata / dourada." },
     { id: 8, name: "Placa em MDF", price: 59.90, image: "https://via.placeholder.com/250x250.png?text=Placa+MDF+8", description: "Placa em MDF..." },
     { id: 9, name: "Placa em MDF", price: 59.90, image: "https://via.placeholder.com/250x250.png?text=Placa+MDF+9", description: "Placa em MDF..." },
     { id: 10, name: "Placa em MDF", price: 59.90, image: "https://via.placeholder.com/250x250.png?text=Placa+MDF+10", description: "Placa em MDF..." },
@@ -42,34 +42,76 @@ const products = [
 const productTimelineContainer = document.querySelector('.product-timeline');
 const searchBtn = document.getElementById('search-btn');
 const searchModal = document.getElementById('search-modal');
-const closeSearchBtn = searchModal ? searchModal.querySelector('.close-btn') : null;
 const hamburgerMenuBtn = document.getElementById('hamburger-menu-btn');
 const mobileNav = document.getElementById('mobile-nav');
 const aboutMeModal = document.getElementById('about-me-modal');
 const scheduleModal = document.getElementById('schedule-modal');
 const aboutMeBtn = document.getElementById('about-me-btn');
 const scheduleBtn = document.getElementById('schedule-btn');
-const closeAboutMeBtn = aboutMeModal ? aboutMeModal.querySelector('.close-btn') : null;
-const closeScheduleBtn = scheduleModal ? scheduleModal.querySelector('.close-btn') : null;
 
-// FUNÇÕES PARA MODAIS (Mantidas)
+// Seleciona todos os botões de fechar e os modais
+const closeBtns = document.querySelectorAll('.modal .close-btn');
+const allModals = document.querySelectorAll('.modal');
+
+// --- FUNÇÕES PARA MODAIS (CORRIGIDAS) ---
+// Note que as funções não são chamadas ao carregar a página
 function openModal(modal) {
-    // Fecha todos os outros modais antes de abrir um novo
     closeAllModals();
-    modal.style.display = 'flex';
+    if (modal) {
+        modal.classList.add('open');
+        document.body.classList.add('no-scroll');
+    }
 }
 
 function closeModal(modal) {
-    modal.style.display = 'none';
+    if (modal) {
+        modal.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+    }
 }
 
 function closeAllModals() {
-    const modals = [searchModal, aboutMeModal, scheduleModal];
-    modals.forEach(modal => modal.style.display = 'none');
+    allModals.forEach(modal => modal.classList.remove('open'));
+    document.body.classList.remove('no-scroll');
 }
 
-// FUNÇÃO DE RENDERIZAÇÃO DE PRODUTOS
-// CORRIGIDO: Removido o botão de Opções
+// --- FUNÇÕES DE NAVEGAÇÃO E OUTRAS LÓGICAS ---
+function setupMobileMenu() {
+    if (hamburgerMenuBtn && mobileNav) {
+        hamburgerMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+            document.body.classList.toggle('no-scroll');
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        const isClickInsideMobileNav = mobileNav.contains(e.target);
+        const isClickOnHamburger = hamburgerMenuBtn.contains(e.target);
+        if (!isClickInsideMobileNav && !isClickOnHamburger && mobileNav.classList.contains('open')) {
+            mobileNav.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+        }
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+        const clickedElement = e.target;
+        if (clickedElement.tagName === 'A' && !clickedElement.classList.contains('nav-products-link') && !clickedElement.closest('.submenu')) {
+            mobileNav.classList.remove('open');
+        }
+    });
+
+    const navProductsLink = document.querySelector('.nav-products-link');
+    const submenu = navProductsLink ? navProductsLink.nextElementSibling : null;
+
+    if (navProductsLink && submenu) {
+        navProductsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            navProductsLink.classList.toggle('active');
+            submenu.classList.toggle('open');
+        });
+    }
+}
+
 function renderProducts() {
     productTimelineContainer.innerHTML = products.map(product => {
         let priceHtml = `R$ ${product.price.toFixed(2)}`;
@@ -94,20 +136,16 @@ function renderProducts() {
     }
 }
 
-// EVENT LISTENERS
+// --- EVENT LISTENERS PRINCIPAIS ---
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
+    setupMobileMenu();
 
+    // Event Listeners para abrir os modais
     if (searchBtn) {
         searchBtn.addEventListener('click', (e) => {
             e.preventDefault();
             openModal(searchModal);
-        });
-    }
-
-    if (closeSearchBtn) {
-        closeSearchBtn.addEventListener('click', () => {
-            closeModal(searchModal);
         });
     }
 
@@ -117,59 +155,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (closeAboutMeBtn) {
-        closeAboutMeBtn.addEventListener('click', () => {
-            closeModal(aboutMeModal);
-        });
-    }
-
     if (scheduleBtn) {
         scheduleBtn.addEventListener('click', () => {
             openModal(scheduleModal);
         });
     }
 
-    if (closeScheduleBtn) {
-        closeScheduleBtn.addEventListener('click', () => {
-            closeModal(scheduleModal);
+    // Event Listeners para fechar os modais usando o botão "X"
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = btn.closest('.modal');
+            closeModal(modal);
         });
-    }
+    });
 
-    if (hamburgerMenuBtn) {
-        hamburgerMenuBtn.addEventListener('click', () => {
-            mobileNav.classList.toggle('open');
-        });
-    }
-
+    // Event Listener para fechar o modal clicando no fundo escuro
     window.addEventListener('click', (e) => {
-        const isClickInsideMobileNav = mobileNav.contains(e.target);
-        const isClickOnHamburger = hamburgerMenuBtn.contains(e.target);
-        if (!isClickInsideMobileNav && !isClickOnHamburger && mobileNav.classList.contains('open')) {
-            mobileNav.classList.remove('open');
+        if (e.target.classList.contains('modal') && e.target.classList.contains('open')) {
+            closeModal(e.target);
         }
     });
-
-    mobileNav.addEventListener('click', (e) => {
-        // CORRIGIDO: Adicionado um novo 'if' para o link de produtos
-        const clickedElement = e.target;
-        // Evita fechar o menu principal se o clique for no link 'Produtos' ou dentro do sub-menu
-        if (clickedElement.tagName === 'A' && !clickedElement.classList.contains('nav-products-link') && !clickedElement.closest('.submenu')) {
-            mobileNav.classList.remove('open');
-        }
-    });
-    
-    // --- LÓGICA ADICIONADA PARA O MENU DE PRODUTOS ---
-    const navProductsLink = document.querySelector('.nav-products-link');
-    const submenu = document.querySelector('.submenu');
-
-    if (navProductsLink && submenu) {
-        navProductsLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            navProductsLink.classList.toggle('active');
-            submenu.classList.toggle('open');
-        });
-    }
-    // --- FIM DA LÓGICA ADICIONADA ---
 
     // LÓGICA DE REDIRECIONAMENTO PARA A PÁGINA DA LOJA
     productTimelineContainer.addEventListener('click', (e) => {
@@ -178,10 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!productId) return;
 
         if (target.classList.contains('add-to-cart-btn')) {
-            // Redireciona para store.html com a ação de adicionar e o ID do produto
             window.location.href = `store.html?action=add_to_cart&id=${productId}`;
         } else if (target.classList.contains('details-btn')) {
-            // Redireciona para store.html com a ação de detalhes e o ID do produto
             window.location.href = `store.html?action=details&id=${productId}`;
         }
     });

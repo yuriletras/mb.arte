@@ -1,11 +1,4 @@
-/* --- Importação de fontes do Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
-
-/* ===== Variaveis e Estilos Globais ===== */
+/* ===== Variáveis e Estilos Globais ===== */
 :root {
     --primary-color: #A37E5C;
     --secondary-color: #F8F5F1;
@@ -15,8 +8,6 @@
     --border-color: #e0e0e0;
     --shadow-color: rgba(0, 0, 0, 0.1);
     --hover-color: #8c6a4e;
-
-    /* Novas variáveis para o header/footer da página principal */
     --bg-color-main: #f5f4f4;
     --bg-color-accent: #ede2d9;
     --text-color-main: #8a4a26;
@@ -71,9 +62,47 @@ body {
     box-sizing: border-box;
 }
 
-.hamburger-menu-btn,
-.search-btn,
+/* --- Correção do Ícone do Carrinho --- */
+.cart-icon {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+}
+
 .cart-icon a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #fff !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 8px !important;
+    margin: 0 !important;
+    text-decoration: none !important;
+}
+
+.cart-icon i {
+    width: 24px !important;
+    height: 24px !important;
+    stroke: currentColor !important;
+    stroke-width: 2 !important;
+}
+
+#cart-count {
+    background-color: var(--bg-color-accent) !important;
+    color: var(--text-color-main) !important;
+    border-radius: 50% !important;
+    padding: 2px 6px !important;
+    font-size: 10px !important;
+    position: absolute !important;
+    top: -5px !important;
+    right: -10px !important;
+}
+
+.hamburger-menu-btn,
+.search-btn {
     color: #fff;
     background: none;
     border: none;
@@ -84,14 +113,14 @@ body {
 }
 
 .hamburger-menu-btn i,
-.search-btn i,
-.cart-icon i {
+.search-btn i {
     width: 24px;
     height: 24px;
     stroke: currentColor;
     stroke-width: 2;
 }
 
+/* --- Logo --- */
 .logo {
     flex-grow: 1;
     display: flex;
@@ -117,21 +146,6 @@ body {
     align-items: center;
     gap: 15px;
     margin: 0;
-}
-
-.cart-icon {
-    position: relative;
-}
-
-#cart-count {
-    background-color: var(--bg-color-accent);
-    color: var(--text-color-main);
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 10px;
-    position: absolute;
-    top: -5px;
-    right: -10px;
 }
 
 /* --- Menu Lateral (Mobile) --- */
@@ -332,11 +346,12 @@ input[type="range"]::-webkit-slider-thumb {
 /* ===== Grid de Produtos (Ajuste principal) ===== */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
     align-items: stretch;
 }
 
+/* === Alteração para fixar a altura do botão === */
 .product-card {
     background-color: var(--card-bg-color);
     border-radius: 8px;
@@ -357,15 +372,17 @@ input[type="range"]::-webkit-slider-thumb {
 
 .product-card img {
     width: 100%;
-    height: 280px;
+    height: 220px;
     object-fit: cover;
 }
 
+/* ESTA É A PRINCIPAL MUDANÇA: Garante um espaço fixo para o nome e preço */
 .product-info {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    justify-content: space-between;
+    min-height: 120px; /* Altura mínima para que nome e preço caibam sem quebrar */
 }
 
 .product-info h3 {
@@ -390,7 +407,8 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
     font-weight: 600;
     transition: background-color 0.3s;
-    margin-top: auto;
+    width: 100%;
+    text-align: center;
 }
 
 .details-btn:hover {
@@ -573,132 +591,7 @@ input[type="range"]::-webkit-slider-thumb {
     background-color: var(--hover-color);
 }
 
-/* --- Rodapé (Footer) --- */
-.main-footer {
-    background-color: var(--highlight-color);
-    color: #fff;
-    padding: 40px 0 20px;
-    box-sizing: border-box;
-}
-
-.footer-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.footer-section {
-    width: 100%;
-    min-width: unset;
-}
-
-.footer-section h3 {
-    font-family: var(--font-family-primary);
-    font-size: 18px;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.social-icons-footer {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-icons-footer a {
-    color: #fff;
-    font-size: 24px;
-    transition: transform 0.3s ease;
-}
-
-.social-icons-footer a:hover {
-    transform: scale(1.1);
-}
-
-.contact-info {
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-.footer-bottom {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 20px;
-    font-size: 12px;
-    text-align: center;
-}
-
-.developer-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-}
-
-.developer-info img {
-    height: 16px;
-    vertical-align: middle;
-}
-
-.whatsapp-float-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: #fff;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 999;
-    transition: transform 0.3s ease;
-}
-
-.whatsapp-float-btn:hover {
-    transform: scale(1.1);
-}
-
-/* --- Responsividade da Loja --- */
-@media (max-width: 768px) {
-    .store-container {
-        flex-direction: column;
-    }
-
-    .filters-sidebar {
-        width: 100%;
-        margin-bottom: 2rem;
-    }
-
-    .product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 1rem;
-    }
-
-    .product-card img {
-        height: 180px;
-    }
-
-    .product-info {
-        padding: 1rem;
-    }
-
-    .details-content-wrapper {
-        flex-direction: column;
-    }
-}
-
-/* --- Responsividade do Header/Footer --- */
+/* --- Responsividade do Header --- */
 @media (min-width: 768px) {
     .header-container {
         gap: 40px;
@@ -714,29 +607,67 @@ input[type="range"]::-webkit-slider-thumb {
     .logo-img {
         height: 50px;
     }
+}
 
-    .footer-top {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        text-align: left;
+/* Novos estilos para mobile */
+@media (max-width: 768px) {
+    .store-container {
+        flex-direction: column;
+        align-items: center; /* Centraliza os elementos */
     }
     
-    .footer-section {
-        flex: 1;
-        min-width: 200px;
-        width: auto;
+    /* Botão para abrir filtros no mobile */
+    .filter-toggle-btn {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 1rem;
+        cursor: pointer;
     }
     
-    .social-icons-footer {
-        justify-content: flex-start;
+    /* Oculta a barra lateral de filtros por padrão no mobile */
+    .filters-sidebar {
+        width: 100%;
+        margin-bottom: 2rem;
+        display: none; /* Inicia escondido */
     }
     
-    .footer-bottom {
-        flex-direction: row;
+    /* Mostra a barra lateral quando a classe 'open' é adicionada */
+    .filters-sidebar.open {
+        display: block;
     }
-    
-    .developer-info {
-        margin-top: 0;
+
+    /* Layout de 2 colunas no grid de produtos para mobile */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    /* Redimensiona as imagens dos produtos para caberem em 2 colunas */
+    .product-card img {
+        height: 180px;
+    }
+
+    .product-info {
+        padding: 1rem;
+    }
+
+    .details-content-wrapper {
+        flex-direction: column;
+    }
+
+    /* Altera o tamanho das fontes para melhor visualização em telas pequenas */
+    .product-details-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .product-price {
+        font-size: 1.5rem;
     }
 }
