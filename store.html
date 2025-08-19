@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nossos Produtos - Minha Loja de Inspiração</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="store.css">
     
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
@@ -19,16 +18,13 @@
             <button id="hamburger-menu-btn" class="hamburger-menu-btn">
                 <i data-feather="menu"></i>
             </button>
-            
             <a href="/" class="logo">
                 <img src="images/mb.png" alt="Logo da Minha Loja" class="logo-img">
             </a>
-
             <div class="header-actions">
                 <button id="search-btn" class="search-btn">
                     <i data-feather="search"></i>
                 </button>
-                
                 <div class="cart-icon">
                     <a href="#" id="open-cart-btn">
                         <i data-feather="shopping-bag"></i>
@@ -61,8 +57,16 @@
     </nav>
     
     <main class="main-content">
+        <section class="banner-section">
+    <img src="images/meu-banner.png" alt="Banner promocional da loja" class="responsive-banner">
+</section>
+
+        <div class="store-header">
+            <h1 class="section-title">PRODUTOS</h1>
+        </div>
         <div class="store-container container">
             <aside class="filters-sidebar">
+                <button class="close-filter-btn">&times;</button>
                 <h2>Filtros</h2>
                 <div class="filter-group">
                     <h3>Tipo de Produto</h3>
@@ -89,9 +93,15 @@
             </aside>
 
             <section class="products-display-area">
-                <div class="product-grid" id="product-list-view">
+                <div class="controls-bar">
+                    <button class="filter-toggle-btn">Filtrar</button>
+                    <div class="pagination-controls">
+                        <button class="prev-page"><i class="fas fa-arrow-left"></i></button>
+                        <span>Página 1 de 5</span>
+                        <button class="next-page"><i class="fas fa-arrow-right"></i></button>
                     </div>
-
+                </div>
+                <div class="product-grid" id="product-list-view"></div>
                 <div class="product-details-view" id="product-details-view" style="display: none;">
                     <button class="back-to-list-btn"><i class="fa fa-arrow-left"></i> Voltar para a lista</button>
                     <div class="details-content-wrapper">
@@ -99,17 +109,14 @@
                             <div class="main-image">
                                 <img id="details-main-image" src="" alt="Imagem principal do produto">
                             </div>
-                            <div class="thumbnail-gallery" id="thumbnail-gallery">
-                                </div>
+                            <div class="thumbnail-gallery" id="thumbnail-gallery"></div>
                         </div>
-
                         <div class="product-details-content">
                             <h2 id="details-name"></h2>
                             <p class="product-price" id="details-price"></p>
                             <div class="product-options-section">
                                 <h3 id="details-variant-title" style="display: none;"></h3>
-                                <div class="options-grid" id="details-variants">
-                                    </div>
+                                <div class="options-grid" id="details-variants"></div>
                             </div>
                             <div class="product-description-section">
                                 <h3>Descrição</h3>
@@ -123,13 +130,15 @@
                                 <h3>ATENÇÃO</h3>
                                 <p id="details-attention"></p>
                             </div>
+                            
                             <div class="product-actions-section">
                                 <div class="quantity-control">
                                     <button class="quantity-minus">-</button>
                                     <input type="number" value="1" min="1" class="quantity-input">
                                     <button class="quantity-plus">+</button>
                                 </div>
-                                <button class="add-to-cart-btn-details">ADICIONAR</button>
+                                <button class="add-to-cart-btn-details">ADICIONAR AO CARRINHO</button>
+                                <button class="share-btn">COMPARTILHAR</button>
                             </div>
                         </div>
                     </div>
@@ -147,7 +156,6 @@
                     <a href="https://api.whatsapp.com/send?phone=5585996928140" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-
             <div class="footer-section fade-in-up" data-animate>
                 <h3>Entre em contato</h3>
                 <div class="contact-info">
@@ -156,7 +164,6 @@
                     <p>Rua Pe. José Moura - Arianopoles</p>
                 </div>
             </div>
-
             <div class="footer-section fade-in-up" data-animate>
                 <h3>Assine nossa newsletter</h3>
                 <form class="newsletter-form-section">
@@ -165,7 +172,6 @@
                 </form>
             </div>
         </div>
-
         <div class="container footer-bottom">
             <p>&copy; Copyright Monique Barbosa Arte - 43794266000107 - 2025. Todos os direitos reservados.</p>
             <div class="developer-info">
@@ -173,7 +179,6 @@
                 <img src="images/ybarbosa.png" alt="Logo do criador">
             </div>
         </div>
-
         <a href="https://api.whatsapp.com/send?phone=5585996928140" class="whatsapp-float-btn" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
@@ -183,8 +188,7 @@
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <h2>Seu Carrinho</h2>
-            <div class="cart-items">
-            </div>
+            <div class="cart-items"></div>
             <div class="cart-summary">
                 <p>Total: R$ <span id="cart-total">0.00</span></p>
                 <button class="checkout-btn">Finalizar Compra</button>
@@ -219,52 +223,12 @@
                 <img src="images/logo1.jpg" alt="Foto da Monique Barbosa Arte" class="modal-bio-image">
                 <div class="about-me-text">
                     <h2>Arte para Transformar Emoções</h2>
-                    <p>Olá! Sou Monique Barbosa, a mente e o coração por trás de cada peça artesanal que você encontra aqui. Movida pela paixão em criar e eternizar histórias, dedico-me a transformar momentos em arte. Cada produto é único, feito à mão, carregado de significado e personalizado para refletir a sua essência. Acredito no poder da arte para conectar pessoas e emoções, e é isso que busco em cada criação: uma obra que inspira e transforma. </p>
-                    <p>Vamos juntos criar algo inesquecível?</p>
+                    <p>Olá! Sou Monique Barbosa, a mente e o coração por trás de cada peça artesanal que você encontra aqui. Movida pela paixão em criar e eternizar histórias, dedico-me a transformar momentos especiais em objetos únicos, feitos com cuidado e personalizados para você. Cada peça carrega um pedaço de emoção, seja para celebrar um casamento, um aniversário ou simplesmente para presentear quem você ama. Vamos juntos criar algo inesquecível?</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="schedule-modal" class="modal">
-        <div class="modal-content schedule-content">
-            <span class="close-btn">&times;</span>
-            <div class="schedule-inner-content">
-                <h2>Planeje sua Criação</h2>
-                <p class="intro-text">Para garantir que seu produto personalizado seja perfeito, siga o nosso processo de agendamento e personalização. É rápido, fácil e garante que sua peça seja entregue no momento certo.</p>
-                
-                <h3 class="schedule-heading">Como Funciona a Encomenda</h3>
-                <ol>
-                    <li>Escolha os produtos personalizados que deseja.</li>
-                    <li>Adicione-os ao carrinho e clique em "Iniciar Compra".</li>
-                    <li>Siga os passos do checkout para preencher seus dados, endereço e escolher o frete.</li>
-                    <li>Escolha a forma de pagamento e finalize o pedido.</li>
-                </ol>
-
-                <h3 class="schedule-heading">Agendamento e Envio</h3>
-                <p>Após a confirmação da compra pelo site, o próximo passo é agendar o envio da sua encomenda. Isso é feito de forma simples e direta pelo nosso WhatsApp.</p>
-                
-                <div class="schedule-callout">
-                    <h4>Datas Disponíveis para Agendamento:</h4>
-                    <ul>
-                        <li>SETEMBRO: 06, 08, 13, 15, 20, 22, 27</li>
-                        <li>OUTUBRO: [atualize as datas aqui]</li>
-                    </ul>
-                </div>
-                
-                <a href="https://api.whatsapp.com/send?phone=5585996928140" target="_blank" class="whatsapp-schedule-btn">
-                    <i class="fab fa-whatsapp"></i> Agendar pelo WhatsApp
-                </a>
-
-                <h3 class="schedule-heading">Sobre a Personalização</h3>
-                <p>Após agendar seu envio, entraremos em contato para coletar todas as informações de personalização do seu produto. Vamos discutir cores, artes, frases e todos os detalhes para que a peça fique exatamente como você imaginou. Também forneceremos atualizações sobre o prazo de produção e entrega.</p>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        feather.replace();
-    </script>
     <script src="store-logic.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Seus dados de produto
-    const productData = [
+    // --- SEÇÃO 1: DADOS E VARIÁVEIS GLOBAIS ---
+    window.productData = [
         {
             id: '1',
             name: "Ilustração em madeira pinus",
@@ -57,16 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             }
         },
-        { 
-            id: '4', 
-            name: "Placa em MDF", 
-            type: 'placas-flamulas', 
-            price: 40.00, 
-            originalPrice: 40.00, 
-            images: ["images/produtos/placa1.png"], 
-            description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate).", 
-            customization: 'Para incluir pintura, há um acréscimo de R$10. Para outros tamanhos, consulte o orçamento.', 
-            attention: 'Qualquer alteração no padrão descrito acima implicará em um custo adicional.', 
+        {
+            id: '4',
+            name: "Placa em MDF",
+            type: 'placas-flamulas',
+            price: 40.00,
+            originalPrice: 40.00,
+            images: ["images/produtos/placa1.png"],
+            description: "Placa em MDF. Pode ser pintada na cor do fundo a escolha do cliente ou no efeito madeira (Disponíveis as cores castanho e chocolate).",
+            customization: 'Para incluir pintura, há um acréscimo de R$10. Para outros tamanhos, consulte o orçamento.',
+            attention: 'Qualquer alteração no padrão descrito acima implicará em um custo adicional.',
             variants: {
                 title: 'Tamanho',
                 options: [
@@ -75,16 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             }
         },
-        { 
-            id: '5', 
-            name: "Placa para recepção", 
-            type: 'placas-flamulas', 
-            price: 110.00, 
-            originalPrice: 110.00, 
-            images: ["images/produtos/placamaior1.png"], 
-            description: "Acrílico: Transparente ou pintado - Cor do fundo a escolha do cliente. Letra preta, branca ou dourada. MDF: Pintada - Cor do fundo a escolha do cliente. Efeito madeira - Disponíveis as cores castanho e chocolate.", 
-            customization: "...", 
-            attention: "Pode ser na horizontal ou vertical. Para tamanhos diferentes consultar orçamento. Para o acrílico disponíveis letras nas cores branco, preto, prata, cobre e dourado.", 
+        {
+            id: '5',
+            name: "Placa para recepção",
+            type: 'placas-flamulas',
+            price: 110.00,
+            originalPrice: 110.00,
+            images: ["images/produtos/placamaior1.png"],
+            description: "Acrílico: Transparente ou pintado - Cor do fundo a escolha do cliente. Letra preta, branca ou dourada. MDF: Pintada - Cor do fundo a escolha do cliente. Efeito madeira - Disponíveis as cores castanho e chocolate.",
+            customization: "...",
+            attention: "Pode ser na horizontal ou vertical. Para tamanhos diferentes consultar orçamento. Para o acrílico disponíveis letras nas cores branco, preto, prata, cobre e dourado.",
             variants: {
                 title: 'Tamanho',
                 options: [
@@ -95,16 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             }
         },
-        { 
-            id: '6', 
-            name: "Porta alianças", 
-            type: 'placas-flamulas', 
-            price: 50.00, 
-            originalPrice: 50.00, 
-            images: ["images/produtos/porta1.png","images/produtos/porta2.png","images/produtos/porta3.png","images/produtos/porta4.png"], 
-            description: "Personalizada com nomes, frases e elementos (símbolos, flores, etc)", 
-            customization: "...", 
-            attention: "Acompanha fio de cetin para amarrar as alianças e suporte em MDF/acrílico. Para o acrílico disponíveis letras nas cores branco, preto, prata, cobre e dourado. Para incluir ilustração da foto acréscimo de R$20.", 
+        {
+            id: '6',
+            name: "Porta alianças",
+            type: 'placas-flamulas',
+            price: 50.00,
+            originalPrice: 50.00,
+            images: ["images/produtos/porta1.png", "images/produtos/porta2.png", "images/produtos/porta3.png", "images/produtos/porta4.png"],
+            description: "Personalizada com nomes, frases e elementos (símbolos, flores, etc)",
+            customization: "...",
+            attention: "Acompanha fio de cetin para amarrar as alianças e suporte em MDF/acrílico. Para o acrílico disponíveis letras nas cores branco, preto, prata, cobre e dourado. Para incluir ilustração da foto acréscimo de R$20.",
             variants: {
                 title: 'Tamanho',
                 options: [
@@ -115,16 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             }
         },
-        { 
-            id: '7', 
-            name: "Chaveiros", 
-            type: 'chaveiros', 
-            price: 7.00, 
-            originalPrice: 7.00, 
-            images: ["images/produtos/chaveiro1.png","images/produtos/chaveiro2.png","images/produtos/chaveiro3.png","images/produtos/chaveiro4.png"], 
-            description: "Personalizado com nomes eelementos , frases e etc. Argola na cor prata / dourada.", 
-            customization: "...", 
-            attention: "Para pedidos acima de 30 peças temos descontos especiais. Para chaveiross no acrílico disponível a letra nas cores branca, preta, prata, cobre e dourada.", 
+        {
+            id: '7',
+            name: "Chaveiros",
+            type: 'chaveiros',
+            price: 7.00,
+            originalPrice: 7.00,
+            images: ["images/produtos/chaveiro1.png", "images/produtos/chaveiro2.png", "images/produtos/chaveiro3.png", "images/produtos/chaveiro4.png"],
+            description: "Personalizado com nomes e elementos, frases e etc. Argola na cor prata / dourada.",
+            customization: "...",
+            attention: "Para pedidos acima de 30 peças temos descontos especiais. Para chaveiros no acrílico disponível a letra nas cores branca, preta, prata, cobre e dourado.",
             variants: {
                 title: 'Tamanho',
                 options: [
@@ -158,7 +158,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxPriceSpan = document.getElementById('max-price-value');
     const applyFiltersBtn = document.querySelector('.apply-filters-btn');
     const filterCheckboxes = document.querySelectorAll('.filter-options input[type="checkbox"]');
-    
+    const filterToggleBtn = document.querySelector('.filter-toggle-btn');
+    const prevPageBtn = document.querySelector('.prev-page');
+    const nextPageBtn = document.querySelector('.next-page');
+    const pageInfo = document.querySelector('.pagination-controls span');
+    const closeFilterBtn = document.querySelector('.close-filter-btn');
+
+    // Adiciona uma referência à barra de controles.
+    const controlsBar = document.querySelector('.controls-bar'); 
+
     // Variáveis para o carrinho de compras
     let cart = [];
     const cartCountSpan = document.getElementById('cart-count');
@@ -166,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartItemsContainer = cartModal.querySelector('.cart-items');
     const cartTotalSpan = document.getElementById('cart-total');
     const openCartBtn = document.getElementById('open-cart-btn');
-    
+
     // Variáveis dos outros modais
     const searchModal = document.getElementById('search-modal');
     const searchBtn = document.getElementById('search-btn');
@@ -178,9 +186,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileNav = document.getElementById('mobile-nav');
     const navProductsLink = document.querySelector('.nav-products-link');
 
+    // Variáveis de paginação
+    let currentPage = 1;
+    const itemsPerPage = 9;
+    let filteredProducts = [...window.productData];
+
+    // --- SEÇÃO 2: FUNÇÕES COMPARTILHADAS ---
+
     // Funções de formatação e carrinho
     const formatPrice = (price) => {
-        return price.toFixed(2).replace('.', ',');
+        if (typeof price !== 'number' || isNaN(price)) {
+            console.error('Preço inválido:', price);
+            return '0,00';
+        }
+        return parseFloat(price).toFixed(2).replace('.', ',');
     };
 
     const updateCartCount = () => {
@@ -202,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const variantText = item.variant ? `<br><small>Tamanho: ${item.variant.size}</small>` : '';
                 const itemPrice = item.variant ? item.variant.price : item.product.price;
                 total += itemPrice * item.quantity;
-                
+
                 itemDiv.innerHTML = `
                     <img src="${item.product.images[0]}" alt="${item.product.name}" class="cart-item-image">
                     <div class="cart-item-details">
@@ -236,19 +255,25 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(`${quantity} item(s) de ${product.name} adicionado ao carrinho!`);
     };
 
-    // Funções de renderização
-    const renderProductCards = (products) => {
+    // Funções de renderização de produtos
+    const renderProductCards = (products, page = currentPage) => {
         if (!productGrid) return;
         productGrid.style.display = 'grid';
-        if (filtersSidebar) filtersSidebar.style.display = 'block';
         if (productDetailsView) productDetailsView.style.display = 'none';
 
+        // Garante que os controles e a paginação estejam visíveis.
+        if (controlsBar) controlsBar.style.display = 'flex';
+        
         productGrid.innerHTML = '';
-        if (products.length === 0) {
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const paginatedProducts = products.slice(start, end);
+
+        if (paginatedProducts.length === 0) {
             productGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Nenhum produto encontrado com os filtros selecionados.</p>';
             return;
         }
-        products.forEach(product => {
+        paginatedProducts.forEach(product => {
             const card = document.createElement('div');
             card.className = 'product-card';
             card.dataset.productId = product.id;
@@ -257,19 +282,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="product-info">
                     <h3>${product.name}</h3>
                     <p>R$ ${formatPrice(product.price)}</p>
-                    <button class="details-btn">Detalhes</button>
+                    <button class="details-btn">Comprar</button>
                 </div>
             `;
             productGrid.appendChild(card);
         });
+
+        updatePagination(products.length);
     };
 
-    const renderProductDetails = (product) => {
+    // Função de renderização de detalhes
+    window.renderProductDetails = (product) => {
         if (!productDetailsView) return;
         if (productGrid) productGrid.style.display = 'none';
-        if (filtersSidebar) filtersSidebar.style.display = 'none';
+        if (filtersSidebar) filtersSidebar.classList.remove('open');
         productDetailsView.style.display = 'block';
         window.scrollTo(0, 0);
+        
+        // Oculta a barra de controles e paginação
+        if (controlsBar) controlsBar.style.display = 'none';
 
         document.getElementById('details-main-image').src = product.images[0];
         document.getElementById('details-main-image').alt = product.name;
@@ -278,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('details-description').textContent = product.description;
         document.getElementById('details-customization').textContent = product.customization;
         document.getElementById('details-attention').textContent = product.attention;
-        
+
         const thumbnailGallery = document.getElementById('thumbnail-gallery');
         thumbnailGallery.innerHTML = '';
         if (product.images && product.images.length > 1) {
@@ -341,9 +372,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 addToCart(product, quantity, selectedVariant);
             });
         }
+        
+        // **NOVO** Adiciona o listener para o botão de compartilhamento
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', () => {
+                handleShare(product);
+            });
+        }
+    };
+    
+    // **NOVO** Função de Compartilhamento
+    const handleShare = async (product) => {
+        const productUrl = `${window.location.origin}/store.html?id=${product.id}`;
+        const shareData = {
+            title: `Confira este produto de Monique Barbosa Arte: ${product.name}`,
+            text: `Olha que lindo este produto da Monique Barbosa Arte: "${product.name}"! Saiba mais aqui:`,
+            url: productUrl,
+        };
+
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+                console.log('Compartilhamento bem-sucedido!');
+            } catch (err) {
+                console.error('Erro ao compartilhar:', err);
+            }
+        } else {
+            // Fallback para navegadores que não suportam a API de Compartilhamento Web
+            const whatsappMessage = encodeURIComponent(
+                `Olha que lindo este produto da Monique Barbosa Arte: "${product.name}"!\n\n${productUrl}`
+            );
+            window.open(`https://api.whatsapp.com/send?text=${whatsappMessage}`, '_blank');
+        }
     };
 
     // Lógica de filtragem e exibição
+    const resetFilters = () => {
+        filterCheckboxes.forEach(checkbox => checkbox.checked = false);
+        const prices = window.productData.map(p => p.price);
+        if (priceRangeInput && prices.length > 0) {
+            priceRangeInput.value = Math.max(...prices);
+            maxPriceSpan.textContent = formatPrice(Math.max(...prices));
+        }
+    };
+
     const filterProducts = () => {
         const selectedTypes = Array.from(filterCheckboxes)
             .filter(cb => cb.checked)
@@ -351,23 +424,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const maxPrice = parseFloat(priceRangeInput.value);
 
-        const filtered = productData.filter(product => {
+        filteredProducts = window.productData.filter(product => {
             const typeMatch = selectedTypes.length === 0 || selectedTypes.includes(product.type);
             const priceMatch = product.price <= maxPrice;
             return typeMatch && priceMatch;
         });
 
-        renderProductCards(filtered);
+        currentPage = 1;
+        renderProductCards(filteredProducts, currentPage);
     };
 
-    // --- LÓGICA DE MODAIS REUTILIZÁVEL E CORRIGIDA ---
+    const updatePagination = (totalItems) => {
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        if (pageInfo) {
+            pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
+        }
+        if (prevPageBtn) prevPageBtn.disabled = currentPage === 1;
+        if (nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
+    };
+
+    // Lógica de modais
     const openModal = (modal) => {
         if (modal) {
             modal.classList.add('open');
             document.body.classList.add('no-scroll');
         }
     };
-    
+
     const closeModal = (modal) => {
         if (modal) {
             modal.classList.remove('open');
@@ -379,38 +462,46 @@ document.addEventListener('DOMContentLoaded', () => {
         allModals.forEach(modal => modal.classList.remove('open'));
         document.body.classList.remove('no-scroll');
     };
+    
+    // --- SEÇÃO 3: INICIALIZAÇÃO E EVENT LISTENERS ---
 
-    // --- NOVA LÓGICA DE INICIALIZAÇÃO DA PÁGINA ---
-    function handlePageLoad() {
-        // Fecha todos os modais ao carregar a página
+    // Função de inicialização
+    function initStore() {
         closeAllModals();
+
+        const prices = window.productData.map(p => p.price);
+        if (prices.length > 0) {
+            priceRangeInput.min = Math.min(...prices);
+            priceRangeInput.max = Math.max(...prices);
+            priceRangeInput.value = Math.max(...prices);
+            minPriceSpan.textContent = formatPrice(Math.min(...prices));
+            maxPriceSpan.textContent = formatPrice(Math.max(...prices));
+        }
 
         const urlParams = new URLSearchParams(window.location.search);
         const productIdFromUrl = urlParams.get('id');
         const actionFromUrl = urlParams.get('action');
 
         if (productIdFromUrl) {
-            const product = productData.find(p => p.id === productIdFromUrl);
+            const product = window.productData.find(p => p.id === productIdFromUrl);
             if (product) {
-                renderProductDetails(product);
+                window.renderProductDetails(product);
                 if (actionFromUrl === 'add_to_cart') {
                     const quantity = 1;
                     const variant = product.variants && product.variants.options ? product.variants.options[0] : null;
                     addToCart(product, quantity, variant);
                 }
             } else {
-                renderProductCards(productData);
+                renderProductCards(window.productData);
+                resetFilters();
             }
         } else {
-            renderProductCards(productData);
-            const prices = productData.map(p => p.price);
-            if (prices.length > 0) {
-                priceRangeInput.min = Math.min(...prices);
-                priceRangeInput.max = Math.max(...prices);
-                priceRangeInput.value = Math.max(...prices);
-                minPriceSpan.textContent = formatPrice(priceRangeInput.min);
-                maxPriceSpan.textContent = formatPrice(priceRangeInput.max);
-            }
+            renderProductCards(window.productData);
+            resetFilters();
+        }
+
+        if (filtersSidebar) {
+            filtersSidebar.classList.remove('open');
         }
     }
 
@@ -420,9 +511,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (detailsBtn) {
             const card = e.target.closest('.product-card');
             const productId = card.dataset.productId;
-            const product = productData.find(p => p.id === productId);
+            const product = window.productData.find(p => p.id === productId);
             if (product) {
-                renderProductDetails(product);
+                // Atualiza a URL sem recarregar a página
+                history.pushState(null, '', `store.html?id=${productId}`);
+                window.renderProductDetails(product);
             }
         }
     });
@@ -430,18 +523,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (backBtn) {
         backBtn.addEventListener('click', () => {
             history.pushState(null, '', 'store.html');
-            handlePageLoad();
+            renderProductCards(window.productData);
+            resetFilters();
+            if (filtersSidebar) filtersSidebar.classList.remove('open');
         });
     }
 
-    if (applyFiltersBtn) applyFiltersBtn.addEventListener('click', filterProducts);
+    if (applyFiltersBtn) {
+        applyFiltersBtn.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            filterProducts();
+        });
+    }
+
     if (priceRangeInput) {
         priceRangeInput.addEventListener('input', () => {
             maxPriceSpan.textContent = formatPrice(parseFloat(priceRangeInput.value));
         });
     }
-    
-    // Lógica de quantidade
+
     if (document.querySelector('.quantity-minus')) {
         document.querySelector('.quantity-minus').addEventListener('click', () => {
             const input = document.querySelector('.quantity-input');
@@ -450,7 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     if (document.querySelector('.quantity-plus')) {
         document.querySelector('.quantity-plus').addEventListener('click', () => {
             const input = document.querySelector('.quantity-input');
@@ -458,7 +558,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Event listeners para modais usando as novas funções
     if (openCartBtn) {
         openCartBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -467,14 +566,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Event listener para abrir o modal de busca
     if (searchBtn) {
         searchBtn.addEventListener('click', () => {
             openModal(searchModal);
         });
     }
-    
-    // Event listeners para fechar os modais usando o botão "X"
+
     closeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = btn.closest('.modal');
@@ -482,14 +579,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Fechar modal ao clicar fora
     window.addEventListener('click', (event) => {
         if (event.target.classList.contains('modal') && event.target.classList.contains('open')) {
             closeModal(event.target);
         }
     });
 
-    // Event listener para o botão hambúrguer
     if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', () => {
             mobileNav.classList.toggle('open');
@@ -497,7 +592,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Esta é a nova lógica para fechar o menu ao clicar fora
     window.addEventListener('click', (e) => {
         const isClickInsideMobileNav = mobileNav.contains(e.target);
         const isClickOnHamburger = hamburgerBtn.contains(e.target);
@@ -507,8 +601,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
-    // Lógica do submenu de navegação
     if (navProductsLink) {
         navProductsLink.addEventListener('click', (e) => {
             e.preventDefault();
@@ -519,11 +611,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inicializar Feather Icons para garantir que os ícones sejam renderizados
+    if (filterToggleBtn) {
+        filterToggleBtn.addEventListener('click', () => {
+            if (filtersSidebar) {
+                filtersSidebar.classList.toggle('open');
+                document.body.classList.toggle('no-scroll');
+            }
+        });
+    }
+
+    if (closeFilterBtn) {
+        closeFilterBtn.addEventListener('click', () => {
+            if (filtersSidebar) {
+                filtersSidebar.classList.remove('open');
+                document.body.classList.remove('no-scroll');
+            }
+        });
+    }
+
+    document.addEventListener('click', (event) => {
+        const isClickInsideFilter = filtersSidebar && filtersSidebar.contains(event.target);
+        const isClickOnFilterToggle = filterToggleBtn && filterToggleBtn.contains(event.target);
+
+        if (filtersSidebar && filtersSidebar.classList.contains('open') && !isClickInsideFilter && !isClickOnFilterToggle) {
+            filtersSidebar.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+        }
+    });
+
+    if (prevPageBtn) {
+        prevPageBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderProductCards(filteredProducts, currentPage);
+            }
+        });
+    }
+
+    if (nextPageBtn) {
+        nextPageBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderProductCards(filteredProducts, currentPage);
+            }
+        });
+    }
+    
+    // **NOVO** Lida com o botão de voltar do navegador
+    window.addEventListener('popstate', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productIdFromUrl = urlParams.get('id');
+
+        if (productIdFromUrl) {
+            const product = window.productData.find(p => p.id === productIdFromUrl);
+            if (product) {
+                window.renderProductDetails(product);
+            }
+        } else {
+            renderProductCards(window.productData);
+        }
+    });
+
     if (typeof feather !== 'undefined') {
         feather.replace();
     }
 
-    // Chama a função de inicialização quando a página carregar
-    handlePageLoad();
+    initStore();
 });
