@@ -19,7 +19,7 @@
                 <i data-feather="menu"></i>
             </button>
             <a href="/" class="logo">
-                <img src="images/mb.png" alt="Logo da Minha Loja" class="logo-img">
+                <img src="images/monique barbosa-04b.png" alt="Logo da Minha Loja" class="logo-img">
             </a>
             <div class="header-actions">
                 <button id="search-btn" class="search-btn">
@@ -61,6 +61,38 @@
     <img src="images/meu-banner.png" alt="Banner promocional da loja" class="responsive-banner">
 </section>
 
+<div class="store-header">
+ <h1 class="section-title">DESTAQUES</h1>
+ </div>
+<section class="spotlights-carousel-section">
+ <div class="container carousel-container">
+<div class="carousel-item">
+<a href="#" class="spotlight-link" data-filter="kits">
+<img src="images/produtos/kits.JPG" alt="Imagem de Kits" class="spotlight-img">
+<span class="spotlight-caption">Kits</span>
+</a>
+</div>
+<div class="carousel-item">
+<a href="#" class="spotlight-link" data-filter="velas">
+ <img src="images/produtos/velas.png" alt="Imagem de Velas Aromáticas" class="spotlight-img">
+ <span class="spotlight-caption">Velas Aromáticas</span>
+ </a>
+ </div>
+<div class="carousel-item">
+<a href="#" class="spotlight-link" data-filter="tacas">
+<img src="images/produtos/taças.jpg" alt="Imagem de Taças" class="spotlight-img">
+<span class="spotlight-caption">Taças</span>
+</a>
+</div>
+<div class="carousel-item">
+ <a href="#" class="spotlight-link" data-filter="xicaras">
+ <img src="images/produtos/xicaras.JPG" alt="Imagem de Xícaras" class="spotlight-img">
+<span class="spotlight-caption">Xícaras</span>
+ </a>
+ </div>
+ </div>
+ </section>
+
         <div class="store-header">
             <h1 class="section-title">PRODUTOS</h1>
         </div>
@@ -93,59 +125,63 @@
             </aside>
 
             <section class="products-display-area">
-                <div class="controls-bar">
-                    <button class="filter-toggle-btn">Filtrar</button>
-                    <div class="pagination-controls">
-                        <button class="prev-page"><i class="fas fa-arrow-left"></i></button>
-                        <span>Página 1 de 5</span>
-                        <button class="next-page"><i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-                <div class="product-grid" id="product-list-view"></div>
-                <div class="product-details-view" id="product-details-view" style="display: none;">
-                    <button class="back-to-list-btn"><i class="fa fa-arrow-left"></i> Voltar para a lista</button>
-                    <div class="details-content-wrapper">
-                        <div class="image-gallery-container">
-                            <div class="main-image">
-                                <img id="details-main-image" src="" alt="Imagem principal do produto">
-                            </div>
-                            <div class="thumbnail-gallery" id="thumbnail-gallery"></div>
-                        </div>
-                        <div class="product-details-content">
-                            <h2 id="details-name"></h2>
-                            <p class="product-price" id="details-price"></p>
-                            <div class="product-options-section">
-                                <h3 id="details-variant-title" style="display: none;"></h3>
-                                <div class="options-grid" id="details-variants"></div>
-                            </div>
-                            <div class="product-description-section">
-                                <h3>Descrição</h3>
-                                <p id="details-description"></p>
-                            </div>
-                            <div class="product-customization-section">
-                                <h3>Modelos de personalização</h3>
-                                <p id="details-customization"></p>
-                            </div>
-                            <div class="product-attention-section">
-                                <h3>ATENÇÃO</h3>
-                                <p id="details-attention"></p>
-                            </div>
-                            
-                            <div class="product-actions-section">
-                                <div class="quantity-control">
-                                    <button class="quantity-minus">-</button>
-                                    <input type="number" value="1" min="1" class="quantity-input">
-                                    <button class="quantity-plus">+</button>
-                                </div>
-                                <button class="add-to-cart-btn-details">ADICIONAR AO CARRINHO</button>
-                                <button class="share-btn">COMPARTILHAR</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <div class="controls-bar">
+        <div class="controls-left">
+            <button class="filter-toggle-btn">Filtrar</button>
+            <button id="remove-filters-btn" class="secondary-btn hidden">
+                <i data-feather="x-circle"></i> Remover Filtros
+            </button>
         </div>
-    </main>
+        <div class="pagination-controls">
+            <button class="prev-page"><i class="fas fa-arrow-left"></i></button>
+            <span>Página 1 de 5</span>
+            <button class="next-page"><i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+    <div class="product-grid" id="product-list-view"></div>
+    <div class="product-details-view" id="product-details-view" style="display: none;">
+        <button class="back-to-list-btn"><i class="fa fa-arrow-left"></i> Voltar para a lista</button>
+        <div class="details-content-wrapper">
+            <div class="image-gallery-container">
+                <div class="main-image">
+                    <img id="details-main-image" src="" alt="Imagem principal do produto">
+                </div>
+                <div class="thumbnail-gallery" id="thumbnail-gallery"></div>
+            </div>
+            <div class="product-details-content">
+                <h2 id="details-name"></h2>
+                <p class="product-price" id="details-price"></p>
+                <div class="product-options-section">
+                    <h3 id="details-variant-title" style="display: none;"></h3>
+                    <div class="options-grid" id="details-variants"></div>
+                </div>
+                <div class="product-description-section">
+                    <h3>Descrição</h3>
+                    <p id="details-description"></p>
+                </div>
+                <div class="product-customization-section">
+                    <h3>Modelos de personalização</h3>
+                    <p id="details-customization"></p>
+                </div>
+                <div class="product-attention-section">
+                    <h3>ATENÇÃO</h3>
+                    <p id="details-attention"></p>
+                </div>
+                <div class="product-actions-section">
+                    <div class="quantity-control">
+                        <button class="quantity-minus">-</button>
+                        <input type="number" value="1" min="1" class="quantity-input">
+                        <button class="quantity-plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn-details">ADICIONAR AO CARRINHO</button>
+                    <button class="share-btn">COMPARTILHAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+ </main>
 
     <footer class="main-footer">
         <div class="container footer-top">

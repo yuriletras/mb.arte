@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: '6',
             name: "Porta alianças",
-            type: 'placas-flamulas',
+            type: 'porta-aliancas',
             price: 50.00,
             originalPrice: 50.00,
             images: ["images/produtos/porta1.png", "images/produtos/porta2.png", "images/produtos/porta3.png", "images/produtos/porta4.png"],
@@ -135,9 +135,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             }
         },
-        { id: '8', name: "Placa em MDF", type: 'placas-flamulas', price: 59.90, originalPrice: 59.90, images: ["https://via.placeholder.com/250x250.png?text=Placa+MDF+8"], description: "Placa em MDF...", customization: "...", attention: "...", variants: null },
-        { id: '9', name: "Placa em MDF", type: 'placas-flamulas', price: 59.90, originalPrice: 59.90, images: ["https://via.placeholder.com/250x250.png?text=Placa+MDF+9"], description: "Placa em MDF...", customization: "...", attention: "...", variants: null },
-        { id: '10', name: "Placa em MDF", type: 'placas-flamulas', price: 59.90, originalPrice: 59.90, images: ["https://via.placeholder.com/250x250.png?text=Placa+MDF+10"], description: "Placa em MDF...", customization: "...", attention: "...", variants: null },
+        // Adicionando alguns produtos para as novas categorias de filtro
+        {
+            id: '8',
+            name: "Vela Aromática de Baunilha",
+            type: 'velas',
+            price: 35.00,
+            originalPrice: 35.00,
+            images: ["https://via.placeholder.com/250x250.png?text=Vela+Baunilha"],
+            description: "Vela perfumada com essência de baunilha, em pote de vidro reutilizável.",
+            customization: "...",
+            attention: "...",
+            variants: null
+        },
+        {
+            id: '9',
+            name: "Kit Essencial",
+            type: 'kits',
+            price: 120.00,
+            originalPrice: 120.00,
+            images: ["https://via.placeholder.com/250x250.png?text=Kit+Essencial"],
+            description: "Kit com vela aromática, difusor e sabonete com essência de lavanda.",
+            customization: "...",
+            attention: "...",
+            variants: null
+        },
+        {
+            id: '10',
+            name: "Taça Personalizada",
+            type: 'tacas',
+            price: 45.00,
+            originalPrice: 45.00,
+            images: ["https://via.placeholder.com/250x250.png?text=Taca+Personalizada"],
+            description: "Taça de gin personalizada com nome, ideal para presentear.",
+            customization: "...",
+            attention: "...",
+            variants: null
+        },
+        // Mantendo os outros produtos para teste de paginação
         { id: '11', name: "Placa em MDF", type: 'placas-flamulas', price: 59.90, originalPrice: 59.90, images: ["https://via.placeholder.com/250x250.png?text=Placa+MDF+11"], description: "Placa em MDF...", customization: "...", attention: "...", variants: null },
         { id: '12', name: "Placa em MDF", type: 'placas-flamulas', price: 59.90, originalPrice: 59.90, images: ["https://via.placeholder.com/250x250.png?text=Placa+MDF+12"], description: "Placa em MDF...", customization: "...", attention: "...", variants: null },
         { id: '13', name: "Placa em MDF", type: 'placas-flamulas', price: 59.90, originalPrice: 59.90, images: ["https://via.placeholder.com/250x250.png?text=Placa+MDF+13"], description: "Placa em MDF...", customization: "...", attention: "...", variants: null },
@@ -165,7 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeFilterBtn = document.querySelector('.close-filter-btn');
 
     // Adiciona uma referência à barra de controles.
-    const controlsBar = document.querySelector('.controls-bar'); 
+    const controlsBar = document.querySelector('.controls-bar');
+    const spotlightLinks = document.querySelectorAll('.spotlight-link');
+    // **NOVO** - Referência ao novo botão de remover filtros
+    const removeFiltersBtn = document.querySelector('#remove-filters-btn');
 
     // Variáveis para o carrinho de compras
     let cart = [];
@@ -193,7 +231,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- SEÇÃO 2: FUNÇÕES COMPARTILHADAS ---
 
-    // Funções de formatação e carrinho
     const formatPrice = (price) => {
         if (typeof price !== 'number' || isNaN(price)) {
             console.error('Preço inválido:', price);
@@ -255,15 +292,13 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(`${quantity} item(s) de ${product.name} adicionado ao carrinho!`);
     };
 
-    // Funções de renderização de produtos
     const renderProductCards = (products, page = currentPage) => {
         if (!productGrid) return;
         productGrid.style.display = 'grid';
         if (productDetailsView) productDetailsView.style.display = 'none';
 
-        // Garante que os controles e a paginação estejam visíveis.
         if (controlsBar) controlsBar.style.display = 'flex';
-        
+
         productGrid.innerHTML = '';
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
@@ -271,6 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (paginatedProducts.length === 0) {
             productGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Nenhum produto encontrado com os filtros selecionados.</p>';
+            if (removeFiltersBtn) removeFiltersBtn.classList.remove('hidden');
             return;
         }
         paginatedProducts.forEach(product => {
@@ -291,15 +327,13 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePagination(products.length);
     };
 
-    // Função de renderização de detalhes
     window.renderProductDetails = (product) => {
         if (!productDetailsView) return;
         if (productGrid) productGrid.style.display = 'none';
         if (filtersSidebar) filtersSidebar.classList.remove('open');
         productDetailsView.style.display = 'block';
         window.scrollTo(0, 0);
-        
-        // Oculta a barra de controles e paginação
+
         if (controlsBar) controlsBar.style.display = 'none';
 
         document.getElementById('details-main-image').src = product.images[0];
@@ -372,42 +406,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 addToCart(product, quantity, selectedVariant);
             });
         }
-        
-        // **NOVO** Adiciona o listener para o botão de compartilhamento
+
         const shareBtn = document.getElementById('share-btn');
         if (shareBtn) {
-            shareBtn.addEventListener('click', () => {
+            const newShareBtn = shareBtn.cloneNode(true);
+            shareBtn.parentNode.replaceChild(newShareBtn, shareBtn);
+            newShareBtn.addEventListener('click', () => {
                 handleShare(product);
             });
         }
     };
-    
-    // **NOVO** Função de Compartilhamento
-    const handleShare = async (product) => {
-        const productUrl = `${window.location.origin}/store.html?id=${product.id}`;
-        const shareData = {
-            title: `Confira este produto de Monique Barbosa Arte: ${product.name}`,
-            text: `Olha que lindo este produto da Monique Barbosa Arte: "${product.name}"! Saiba mais aqui:`,
-            url: productUrl,
-        };
 
-        if (navigator.share) {
-            try {
-                await navigator.share(shareData);
-                console.log('Compartilhamento bem-sucedido!');
-            } catch (err) {
-                console.error('Erro ao compartilhar:', err);
-            }
-        } else {
-            // Fallback para navegadores que não suportam a API de Compartilhamento Web
-            const whatsappMessage = encodeURIComponent(
-                `Olha que lindo este produto da Monique Barbosa Arte: "${product.name}"!\n\n${productUrl}`
-            );
-            window.open(`https://api.whatsapp.com/send?text=${whatsappMessage}`, '_blank');
+    // Função para limpar todos os filtros
+    const resetAllFilters = () => {
+        resetFilters(); // Limpa checkboxes e preço
+        filterProducts(); // Re-renderiza a lista completa de produtos
+        if (removeFiltersBtn) {
+            removeFiltersBtn.classList.add('hidden');
         }
     };
 
-    // Lógica de filtragem e exibição
     const resetFilters = () => {
         filterCheckboxes.forEach(checkbox => checkbox.checked = false);
         const prices = window.productData.map(p => p.price);
@@ -417,10 +435,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const filterProducts = () => {
-        const selectedTypes = Array.from(filterCheckboxes)
-            .filter(cb => cb.checked)
-            .map(cb => cb.value);
+    // Função de filtragem unificada para carrossel e barra lateral
+    const filterProducts = (filterType = null) => {
+        let selectedTypes = [];
+
+        if (filterType) {
+            filterCheckboxes.forEach(checkbox => checkbox.checked = false);
+            selectedTypes.push(filterType);
+        } else {
+            selectedTypes = Array.from(filterCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+        }
 
         const maxPrice = parseFloat(priceRangeInput.value);
 
@@ -429,6 +455,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const priceMatch = product.price <= maxPrice;
             return typeMatch && priceMatch;
         });
+
+        // **NOVO** - Lógica para mostrar/esconder o botão 'Remover Filtros'
+        const hasFilters = selectedTypes.length > 0 || maxPrice < parseFloat(priceRangeInput.max);
+        if (removeFiltersBtn) {
+            if (hasFilters) {
+                removeFiltersBtn.classList.remove('hidden');
+            } else {
+                removeFiltersBtn.classList.add('hidden');
+            }
+        }
 
         currentPage = 1;
         renderProductCards(filteredProducts, currentPage);
@@ -443,7 +479,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
     };
 
-    // Lógica de modais
     const openModal = (modal) => {
         if (modal) {
             modal.classList.add('open');
@@ -462,10 +497,9 @@ document.addEventListener('DOMContentLoaded', () => {
         allModals.forEach(modal => modal.classList.remove('open'));
         document.body.classList.remove('no-scroll');
     };
-    
+
     // --- SEÇÃO 3: INICIALIZAÇÃO E EVENT LISTENERS ---
 
-    // Função de inicialização
     function initStore() {
         closeAllModals();
 
@@ -493,11 +527,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else {
                 renderProductCards(window.productData);
-                resetFilters();
+                resetAllFilters(); // Garante o estado inicial correto
             }
         } else {
             renderProductCards(window.productData);
-            resetFilters();
+            resetAllFilters(); // Garante o estado inicial correto
         }
 
         if (filtersSidebar) {
@@ -505,7 +539,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Event listeners
     productGrid.addEventListener('click', (e) => {
         const detailsBtn = e.target.closest('.details-btn');
         if (detailsBtn) {
@@ -513,7 +546,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const productId = card.dataset.productId;
             const product = window.productData.find(p => p.id === productId);
             if (product) {
-                // Atualiza a URL sem recarregar a página
                 history.pushState(null, '', `store.html?id=${productId}`);
                 window.renderProductDetails(product);
             }
@@ -526,13 +558,29 @@ document.addEventListener('DOMContentLoaded', () => {
             renderProductCards(window.productData);
             resetFilters();
             if (filtersSidebar) filtersSidebar.classList.remove('open');
+            if (removeFiltersBtn) removeFiltersBtn.classList.add('hidden'); // Oculta ao voltar
         });
     }
 
     if (applyFiltersBtn) {
         applyFiltersBtn.addEventListener('click', (e) => {
-            e.preventDefault(); 
+            e.preventDefault();
             filterProducts();
+        });
+    }
+
+    spotlightLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const filterType = link.dataset.filter;
+            filterProducts(filterType);
+        });
+    });
+
+    // **NOVO** - Event listener para o novo botão de remover filtros
+    if (removeFiltersBtn) {
+        removeFiltersBtn.addEventListener('click', () => {
+            resetAllFilters();
         });
     }
 
@@ -657,8 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
-    // **NOVO** Lida com o botão de voltar do navegador
+
     window.addEventListener('popstate', () => {
         const urlParams = new URLSearchParams(window.location.search);
         const productIdFromUrl = urlParams.get('id');
