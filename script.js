@@ -113,19 +113,14 @@ function setupMobileMenu() {
 }
 
 function renderProducts() {
+    // AQUI: O código foi alterado para remover o preço e o botão "Adicionar".
     productTimelineContainer.innerHTML = products.map(product => {
-        let priceHtml = `R$ ${product.price.toFixed(2)}`;
-        
         return `
             <div class="product-card-timeline fade-in-up" data-id="${product.id}" data-animate>
                 <img src="${product.image}" alt="${product.name}" class="product-image-thumbnail">
                 <h3>${product.name}</h3>
                 <div class="product-details-actions">
-                    <p class="price">${priceHtml.replace('.', ',')}</p>
-                    <div class="product-actions">
-                        <button class="add-to-cart-btn" data-id="${product.id}">Adicionar</button>
-                        <button class="details-btn" data-id="${product.id}">Detalhes</button>
-                    </div>
+                    <button class="details-btn" data-id="${product.id}">Detalhes</button>
                 </div>
             </div>
         `;

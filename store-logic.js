@@ -135,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             }
         },
-        // Adicionando alguns produtos para as novas categorias de filtro
         {
             id: '8',
             name: "Vela Aromática de Baunilha",
@@ -172,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
             attention: "...",
             variants: null
         },
-        // Mantendo os outros produtos para teste de paginação
         { id: '11', name: "Placa em MDF", type: 'placas-flamulas', price: 59.90, originalPrice: 59.90, images: ["https://via.placeholder.com/250x250.png?text=Placa+MDF+11"], description: "Placa em MDF...", customization: "...", attention: "...", variants: null },
         { id: '12', name: "Placa em MDF", type: 'placas-flamulas', price: 59.90, originalPrice: 59.90, images: ["https://via.placeholder.com/250x250.png?text=Placa+MDF+12"], description: "Placa em MDF...", customization: "...", attention: "...", variants: null },
         { id: '13', name: "Placa em MDF", type: 'placas-flamulas', price: 59.90, originalPrice: 59.90, images: ["https://via.placeholder.com/250x250.png?text=Placa+MDF+13"], description: "Placa em MDF...", customization: "...", attention: "...", variants: null },
@@ -198,20 +196,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextPageBtn = document.querySelector('.next-page');
     const pageInfo = document.querySelector('.pagination-controls span');
     const closeFilterBtn = document.querySelector('.close-filter-btn');
-
-    // Adiciona uma referência à barra de controles.
     const controlsBar = document.querySelector('.controls-bar');
     const spotlightLinks = document.querySelectorAll('.spotlight-link');
-    // **NOVO** - Referência ao novo botão de remover filtros
     const removeFiltersBtn = document.querySelector('#remove-filters-btn');
 
     // Variáveis para o carrinho de compras
-    let cart = [];
+    let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartCountSpan = document.getElementById('cart-count');
     const cartModal = document.getElementById('cart-modal');
     const cartItemsContainer = cartModal.querySelector('.cart-items');
     const cartTotalSpan = document.getElementById('cart-total');
     const openCartBtn = document.getElementById('open-cart-btn');
+    const checkoutBtn = cartModal.querySelector('.checkout-btn');
 
     // Variáveis dos outros modais
     const searchModal = document.getElementById('search-modal');
@@ -284,9 +280,13 @@ document.addEventListener('DOMContentLoaded', () => {
             cart.push({
                 product,
                 quantity,
-                variant
+                variant,
+                name: product.name,
+                price: variant ? variant.price : product.price,
+                image: product.images[0]
             });
         }
+        localStorage.setItem('cartItems', JSON.stringify(cart));
         updateCartCount();
         renderCartModal();
         alert(`${quantity} item(s) de ${product.name} adicionado ao carrinho!`);
@@ -419,8 +419,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para limpar todos os filtros
     const resetAllFilters = () => {
-        resetFilters(); // Limpa checkboxes e preço
-        filterProducts(); // Re-renderiza a lista completa de produtos
+        resetFilters();
+        filterProducts();
         if (removeFiltersBtn) {
             removeFiltersBtn.classList.add('hidden');
         }
@@ -456,7 +456,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return typeMatch && priceMatch;
         });
 
-        // **NOVO** - Lógica para mostrar/esconder o botão 'Remover Filtros'
         const hasFilters = selectedTypes.length > 0 || maxPrice < parseFloat(priceRangeInput.max);
         if (removeFiltersBtn) {
             if (hasFilters) {
@@ -527,16 +526,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else {
                 renderProductCards(window.productData);
-                resetAllFilters(); // Garante o estado inicial correto
+                resetAllFilters();
             }
         } else {
             renderProductCards(window.productData);
-            resetAllFilters(); // Garante o estado inicial correto
+            resetAllFilters();
         }
 
         if (filtersSidebar) {
             filtersSidebar.classList.remove('open');
         }
+
+        updateCartCount();
     }
 
     productGrid.addEventListener('click', (e) => {
@@ -558,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderProductCards(window.productData);
             resetFilters();
             if (filtersSidebar) filtersSidebar.classList.remove('open');
-            if (removeFiltersBtn) removeFiltersBtn.classList.add('hidden'); // Oculta ao voltar
+            if (removeFiltersBtn) removeFiltersBtn.classList.add('hidden');
         });
     }
 
@@ -577,7 +578,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // **NOVO** - Event listener para o novo botão de remover filtros
     if (removeFiltersBtn) {
         removeFiltersBtn.addEventListener('click', () => {
             resetAllFilters();
@@ -611,6 +611,16 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             renderCartModal();
             openModal(cartModal);
+        });
+    }
+
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Seu carrinho está vazio. Adicione itens antes de finalizar a compra.');
+                return;
+            }
+            window.location.href = 'checkout.html';
         });
     }
 
