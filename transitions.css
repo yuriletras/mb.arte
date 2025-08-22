@@ -6,8 +6,9 @@
 /* Estilo inicial dos elementos antes de serem animados */
 .fade-in-up {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
+    transform: translateY(10px); /* Reduzido de 30px para 10px */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform; /* Otimiza performance */
 }
 
 /* Estilo final (ativado via JavaScript) */
@@ -17,14 +18,14 @@
 }
 
 /* Para efeitos de entrada escalonada (ex: cards de produtos) */
-/* CORRIGIDO: O nome da classe deve corresponder ao do seu HTML (.product-card-timeline) */
 .product-card-timeline {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(10px); /* Reduzido de 20px para 10px */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform; /* Otimiza performance */
 }
 
-/* CORRIGIDO: Quando a classe 'animated' é adicionada, a animação acontece */
+/* Quando a classe 'animated' é adicionada, a animação acontece */
 .product-card-timeline.animated {
     opacity: 1;
     transform: translateY(0);

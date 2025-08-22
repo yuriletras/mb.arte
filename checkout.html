@@ -21,14 +21,10 @@
                 <img src="images/monique barbosa-04b.png" alt="Logo da Minha Loja" class="logo-img">
             </a>
             <div class="header-actions">
-                <button id="search-btn" class="search-btn">
-                    <i data-feather="search"></i>
+                <!-- Ícone de "Informação" mantido -->
+                <button id="important-btn" class="important-btn" aria-label="Informações Importantes">
+                    <i data-feather="info"></i>
                 </button>
-                <div class="cart-icon">
-                    <a href="#" id="open-cart-btn">
-                        <i data-feather="shopping-cart"></i> <span id="cart-count">0</span>
-                    </a>
-                </div>
             </div>
         </div>
     </header>
@@ -209,7 +205,11 @@
             </div>
         </div>
         <div class="container footer-bottom">
-            <p class="copyright">© Copyright Monique Barbosa Arte - 43794266000107 - 2025. Todos os direitos reservados. criado por <img src="images/ybarbosa.png" alt="Logo do criador" class="developer-logo"></p>
+            <p>&copy; Copyright Monique Barbosa Arte - 43794266000107 - 2025. Todos os direitos reservados.</p>
+            <div class="developer-info">
+                <p>criado por</p>
+                <img src="images/ybarbosa.png" alt="Logo do criador">
+            </div>
         </div>
         <a href="https://api.whatsapp.com/send?phone=5585996928140" class="whatsapp-float-btn" target="_blank">
             <i class="fab fa-whatsapp"></i>
@@ -263,5 +263,8 @@
 
     <script src="store-logic.js"></script>
     <script src="checkout.js"></script>
+    <script>
+        feather.replace(); // Inicializa os ícones Feather
+    </script>
 </body>
 </html>
