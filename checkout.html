@@ -17,11 +17,10 @@
             <button id="hamburger-menu-btn" class="hamburger-menu-btn">
                 <i data-feather="menu"></i>
             </button>
-            <a href="/" class="logo">
+            <a href="index.html" class="logo">
                 <img src="images/monique barbosa-04b.png" alt="Logo da Minha Loja" class="logo-img">
             </a>
             <div class="header-actions">
-                <!-- Ícone de "Informação" mantido -->
                 <button id="important-btn" class="important-btn" aria-label="Informações Importantes">
                     <i data-feather="info"></i>
                 </button>
@@ -30,8 +29,14 @@
     </header>
 
     <nav id="mobile-nav" class="mobile-nav">
+        <div class="user-btn-container">
+            <a href="login.html" class="user-btn">
+                <i data-feather="user"></i>
+            </a>
+        </div>
         <ul>
             <li><a href="index.html">Início</a></li>
+            <li><a href="store.html">Loja Online</a></li>
             <li>
                 <a href="#" class="nav-products-link">Produtos</a>
                 <ul class="submenu">
@@ -46,7 +51,6 @@
                     <li><a href="#">Produtos Ilustrados</a></li>
                 </ul>
             </li>
-            <li><a href="#">Frete e entregas</a></li>
         </ul>
     </nav>
     
@@ -56,15 +60,18 @@
         </div>
         <div class="store-container container checkout-container">
             <section class="checkout-form-section">
-                <form id="checkout-form">
+                <div class="auth-buttons">
+                    <button type="button" class="login-btn">Fazer Login ou Cadastrar</button>
+                    <button type="button" class="guest-checkout-btn">Continuar como Visitante</button>
+                </div>
+                <p class="order-note">Após confirmar sua compra, entre em contato pelo WhatsApp para personalizar seus itens e agendar a entrega!</p>
+                <form id="checkout-form" style="display: none;">
                     <div class="checkout-group">
                         <h3>Detalhes de Contato</h3>
                         <label for="name">Nome Completo</label>
                         <input type="text" id="name" required>
-                        
                         <label for="email">E-mail</label>
                         <input type="email" id="email" required>
-                        
                         <label for="phone">Telefone</label>
                         <input type="tel" id="phone" required>
                     </div>
@@ -76,19 +83,14 @@
                             <input type="text" id="zip" required>
                             <button type="button" id="search-zip-btn">Buscar</button>
                         </div>
-                        
                         <label for="street">Rua</label>
                         <input type="text" id="street" required>
-                        
                         <label for="number">Número</label>
                         <input type="text" id="number" required>
-                        
                         <label for="complement">Complemento (opcional)</label>
                         <input type="text" id="complement">
-                        
                         <label for="city">Cidade</label>
                         <input type="text" id="city" required>
-                        
                         <label for="state">Estado</label>
                         <select id="state" required>
                             <option value="">Selecione</option>
@@ -134,7 +136,6 @@
                             <div class="card-details" id="card-details">
                                 <label for="card-number">Número do Cartão</label>
                                 <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
-                                
                                 <div class="card-details-row">
                                     <div>
                                         <label for="card-expiry">Data de Expiração (MM/AA)</label>
@@ -145,11 +146,9 @@
                                         <input type="text" id="card-cvv" placeholder="123" required>
                                     </div>
                                 </div>
-                                
                                 <label for="card-name">Nome no Cartão</label>
                                 <input type="text" id="card-name" placeholder="Nome Completo" required>
                             </div>
-                            
                             <div class="payment-option">
                                 <input type="radio" name="payment" id="payment-pix" value="pix">
                                 <label for="payment-pix" class="payment-label">
@@ -264,7 +263,7 @@
     <script src="store-logic.js"></script>
     <script src="checkout.js"></script>
     <script>
-        feather.replace(); // Inicializa os ícones Feather
+        feather.replace();
     </script>
 </body>
 </html>

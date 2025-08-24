@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <button id="hamburger-menu-btn" class="hamburger-menu-btn">
+                <i data-feather="menu"></i>
+            </button>
+            <a href="index.html" class="logo">
+                <img src="images/monique barbosa-04b.png" alt="Logo da Minha Loja" class="logo-img">
+            </a>
+            <div class="header-actions">
+                <button id="important-btn" class="important-btn" aria-label="Informações Importantes">
+                    <i data-feather="info"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav id="mobile-nav" class="mobile-nav">
+        <div class="user-btn-container">
+            <a href="login.html" class="user-btn">
+                <i data-feather="user"></i>
+            </a>
+        </div>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="store.html">Loja Online</a></li>
+            <li>
+                <a href="#" class="nav-products-link">Produtos</a>
+                <ul class="submenu">
+                    <li><a href="#">Kits</a></li>
+                    <li><a href="#">Caixas</a></li>
+                    <li><a href="#">Xícaras</a></li>
+                    <li><a href="#">Porta Joia</a></li>
+                    <li><a href="#">Velas Aromáticas</a></li>
+                    <li><a href="#">Taças</a></li>
+                    <li><a href="#">Chaveiros</a></li>
+                    <li><a href="#">Placas & Flâmulas</a></li>
+                    <li><a href="#">Produtos Ilustrados</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <main class="main-content">
+        <div class="store-header">
+            <h1 class="section-title">LOGIN</h1>
+        </div>
+        <div class="store-container container">
+            <div class="auth-content">
+                <form id="auth-form">
+                    <div class="auth-group">
+                        <label for="auth-email">E-mail</label>
+                        <input type="email" id="auth-email" required>
+                        <label for="auth-password">Senha</label>
+                        <input type="password" id="auth-password" required>
+                        <div class="auth-buttons-container">
+                            <button type="submit" class="auth-submit-btn">Entrar</button>
+                            <button type="button" class="toggle-form-btn">Não tem uma conta? Cadastre-se aqui.</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-top">
+            <div class="footer-section fade-in-up" data-animate>
+                <div class="social-icons-footer">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=5585996928140" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section fade-in-up" data-animate>
+                <h3>Entre em contato</h3>
+                <div class="contact-info">
+                    <p>(85) 99692-8140</p>
+                    <p>monique.bst.0403@gmail.com</p>
+                    <p>Rua Pe. José Moura - Arianopoles</p>
+                </div>
+            </div>
+            <div class="footer-section fade-in-up" data-animate>
+                <h3>Assine nossa newsletter</h3>
+                <form class="newsletter-form-section">
+                    <input type="email" placeholder="E-mail">
+                    <button type="submit"><i class="fas fa-plus"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; Copyright Monique Barbosa Arte - 43794266000107 - 2025. Todos os direitos reservados.</p>
+            <div class="developer-info">
+                <p>criado por</p>
+                <img src="images/ybarbosa.png" alt="Logo do criador">
+            </div>
+        </div>
+        <a href="https://api.whatsapp.com/send?phone=5585996928140" class="whatsapp-float-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </footer>
+
+    <script src="store-logic.js"></script>
+    <script src="login.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
